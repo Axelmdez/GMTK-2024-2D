@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
     private float timer;
     private Transform hitTransform;
     public float boxTransformTime = 2.0f;
+    private bool shrinkMode;
 
     void Start()
     {
@@ -42,6 +43,7 @@ public class PlayerController : MonoBehaviour
         DisableLaser();
         facingLeft = false;
         isTiming = false;
+        shrinkMode = false;
     }
 
     void Update()
@@ -50,6 +52,7 @@ public class PlayerController : MonoBehaviour
         Jump();
         CheckGround();
         HandleInteraction();
+        UpdateGunMode();
         Shoot();
     }
 
@@ -85,7 +88,7 @@ public class PlayerController : MonoBehaviour
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer) || Physics2D.OverlapCircle(groundCheck.position, 0.2f, pickupsLayer);
     }
-
+    //private Transform boxParent;
     void HandleInteraction()
     {
         raycastDirection = transform.right * transform.localScale.x; 
@@ -102,7 +105,7 @@ public class PlayerController : MonoBehaviour
                     heldItem.GetComponent<Rigidbody2D>().isKinematic = true;
                     holdPoint.position += Vector3.up * holdDistance;
                     heldItem.transform.position = holdPoint.position;
-
+                    //boxParent = heldItem.GetComponentInParent<Transform>();
                     heldItem.transform.parent = transform; 
                 }
             }
@@ -118,9 +121,16 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-
+    void UpdateGunMode()
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+            shrinkMode = !shrinkMode;
+        }
+    }
     void Shoot()
     {
+        
         if (Input.GetMouseButtonDown(0))
         {
 
@@ -184,15 +194,14 @@ public class PlayerController : MonoBehaviour
         if (hit) {
             
             lineRenderer.SetPosition(1, hit.point);
-            // Transform hitTransform = hit.collider.transform;
-            // BoxTransform(hitTransform);
+            
             if (isTiming && hit.collider.transform == hitTransform)
             {
                 timer += Time.deltaTime;
 
                 if (timer >= boxTransformTime)
                 {
-                    BoxTransform(hitTransform);
+                    hit.transform.GetComponent<Box>().BoxTransform(hitTransform,shrinkMode);
                     isTiming = false;
                     timer = 0.0f;
                 }
@@ -212,30 +221,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private void BoxTransform(Transform hitTransform)
-    {
-        if (hitTransform.name == "Small")
-        {
-            hitTransform.gameObject.SetActive(false);
-
-            Transform mediumBox = hitTransform.parent.Find("Medium");
-            if (mediumBox != null)
-            {
-                mediumBox.gameObject.SetActive(true);
-            }
-        }
-
-        else if (hitTransform.name == "Medium")
-        {
-            hitTransform.gameObject.SetActive(false);
-
-            Transform largeBox = hitTransform.parent.Find("Large");
-            if (largeBox != null)
-            {
-                largeBox.gameObject.SetActive(true);
-            }
-        }
-    }
+    
 
     private void DisableLaser()
     {
