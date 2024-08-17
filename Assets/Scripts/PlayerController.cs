@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
@@ -19,17 +20,27 @@ public class PlayerController : MonoBehaviour
     public bool isGrounded;
     private GameObject heldItem;
 
-    private float shootingTimer = Mathf.Infinity;
-    [SerializeField] private float shootingCooldown;
 
     public Camera cam;
     public LineRenderer lineRenderer;
     public Transform firePoint;
+    private bool facingLeft;
+    private Vector2 laserTargetDirection;
+    public float laserLength = 100;
+    public float laserLerpSpeed = 5.0f;
+    public float laserMaxAngle = 100.0f;
+    public GameObject box;
+    private bool isTiming;
+    private float timer;
+    private Transform hitTransform;
+    public float boxTransformTime = 2.0f;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         DisableLaser();
+        facingLeft = false;
+        isTiming = false;
     }
 
     void Update()
@@ -49,11 +60,14 @@ public class PlayerController : MonoBehaviour
         // Flip character sprite based on movement direction
         if (moveInput > 0)
         {
-            transform.localScale = new Vector3(1, 1, 1);
+            TurnRight();
+
+            //transform.localScale = new Vector3(1, 1, 1);
         }
         else if (moveInput < 0)
         {
-            transform.localScale = new Vector3(-1, 1, 1);
+            TurnLeft();
+            //transform.localScale = new Vector3(-1, 1, 1);
         }
     }
 
@@ -87,6 +101,7 @@ public class PlayerController : MonoBehaviour
                     heldItem.GetComponent<Rigidbody2D>().isKinematic = true;
                     holdPoint.position += Vector3.up * holdDistance;
                     heldItem.transform.position = holdPoint.position;
+
                     heldItem.transform.parent = transform; 
                 }
             }
@@ -149,18 +164,93 @@ public class PlayerController : MonoBehaviour
     {
         var mousePos = (Vector2)cam.ScreenToWorldPoint(Input.mousePosition);
         lineRenderer.SetPosition(0,firePoint.position);
-        lineRenderer.SetPosition(1,mousePos);
-
-        Vector2 direction = mousePos - (Vector2) transform.position;
-        RaycastHit2D hit = Physics2D.Raycast((Vector2) transform.position,direction.normalized,direction.magnitude,pickupsLayer);
-
+        lineRenderer.SetPosition(1, mousePos);
+        Vector2 direction = mousePos - (Vector2)firePoint.position;
+        direction.Normalize();
+        Vector2 characterDirection = facingLeft ? Vector2.left : Vector2.right;
+        float angle = Vector2.Angle(characterDirection, direction);
+        if (angle > laserMaxAngle)
+        {
+            float sign = Mathf.Sign(Vector2.SignedAngle(characterDirection, direction));
+            Quaternion rotation = Quaternion.AngleAxis(laserMaxAngle * sign, Vector3.forward);
+            direction = rotation * characterDirection;
+        }
+        laserTargetDirection = Vector2.Lerp(laserTargetDirection, direction, laserLerpSpeed * Time.deltaTime);
+        
+        Vector2 laserEndPoint = (Vector2)firePoint.position + laserTargetDirection * laserLength; 
+        lineRenderer.SetPosition(1, laserEndPoint);
+        RaycastHit2D hit = Physics2D.Raycast(firePoint.position, laserTargetDirection, laserLength, pickupsLayer);
         if (hit) {
-            lineRenderer.SetPosition(1,hit.point);
+            
+            lineRenderer.SetPosition(1, hit.point);
+            // Transform hitTransform = hit.collider.transform;
+            // BoxTransform(hitTransform);
+            if (isTiming && hit.collider.transform == hitTransform)
+            {
+                timer += Time.deltaTime;
+
+                if (timer >= boxTransformTime)
+                {
+                    BoxTransform(hitTransform);
+                    isTiming = false;
+                    timer = 0.0f;
+                }
+            }
+            else
+            {
+                isTiming = true;
+                timer = 0.0f;
+                hitTransform = hit.collider.transform; 
+            }
+        }
+        else
+        {
+            isTiming = false;
+            timer = 0.0f;
+        }
+
+    }
+
+    private void BoxTransform(Transform hitTransform)
+    {
+        if (hitTransform.name == "Small")
+        {
+            hitTransform.gameObject.SetActive(false);
+
+            Transform mediumBox = hitTransform.parent.Find("Medium");
+            if (mediumBox != null)
+            {
+                mediumBox.gameObject.SetActive(true);
+            }
+        }
+
+        else if (hitTransform.name == "Medium")
+        {
+            hitTransform.gameObject.SetActive(false);
+
+            Transform largeBox = hitTransform.parent.Find("Large");
+            if (largeBox != null)
+            {
+                largeBox.gameObject.SetActive(true);
+            }
         }
     }
 
     private void DisableLaser()
     {
         lineRenderer.enabled = false;
+    }
+
+    private void TurnRight()
+    {
+        transform.localScale = new Vector3(1, 1, 1);
+        facingLeft = false;
+    }
+
+    private void TurnLeft()
+    {
+        transform.localScale = new Vector3(-1, 1, 1);
+        facingLeft = true;
+
     }
 }
