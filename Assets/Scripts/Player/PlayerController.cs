@@ -35,7 +35,8 @@ public class PlayerController : MonoBehaviour
     private float timer;
     private Transform hitTransform;
     public float boxTransformTime = 2.0f;
-    private bool shrinkMode;
+    private bool shrinkMode; 
+    private Vector3 initialPosition;
 
     void Start()
     {
@@ -44,6 +45,8 @@ public class PlayerController : MonoBehaviour
         facingLeft = false;
         isTiming = false;
         shrinkMode = false;
+
+        initialPosition = transform.position;
     }
 
     void Update()
@@ -152,6 +155,13 @@ public class PlayerController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         // Logic for pushing here
+    }
+
+    public void TakeDamage()
+    {
+        transform.position = initialPosition;
+        rb.velocity = Vector2.zero;
+        Debug.Log("Player took damage and respawned!");
     }
 
     private bool isRaycastVisible = true;
