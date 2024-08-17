@@ -16,13 +16,15 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     public bool isGrounded;
     private GameObject heldItem;
+    private Vector3 initialPosition;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        initialPosition = transform.position;
     }
 
-    void Update()
+        void Update()
     {
         Move();
         Jump();
@@ -116,5 +118,11 @@ public class PlayerController : MonoBehaviour
             Gizmos.color = Color.green;
             Gizmos.DrawLine(transform.position, (Vector2)transform.position + raycastDirection * raycastDistance);
         }
+    }
+    public void TakeDamage()
+    {
+        transform.position = initialPosition;
+        rb.velocity = Vector2.zero;
+        //Debug.Log("Player took damage and respawned!");
     }
 }
