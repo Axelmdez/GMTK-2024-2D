@@ -13,13 +13,23 @@ public class PlayerController : MonoBehaviour
     public float throwForce = 10f;
     public GameObject projectilePrefab;
 
+    
+
     private Rigidbody2D rb;
     public bool isGrounded;
     private GameObject heldItem;
 
+    private float shootingTimer = Mathf.Infinity;
+    [SerializeField] private float shootingCooldown;
+
+    public Camera cam;
+    public LineRenderer lineRenderer;
+    public Transform firePoint;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        DisableLaser();
     }
 
     void Update()
@@ -97,8 +107,20 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-           // Logic for shooting here
+
+            // anim.SetTrigger("attackAnimation");
+            EnableLaser();
         }
+
+        if (Input.GetMouseButton(0)) {
+            UpdateLaser();
+
+        }
+
+        if (Input.GetMouseButtonUp(0)) {
+            DisableLaser();
+        }
+        
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -116,5 +138,29 @@ public class PlayerController : MonoBehaviour
             Gizmos.color = Color.green;
             Gizmos.DrawLine(transform.position, (Vector2)transform.position + raycastDirection * raycastDistance);
         }
+    }
+
+    private void EnableLaser()
+    {
+        lineRenderer.enabled = true;
+    }
+
+    private void UpdateLaser()
+    {
+        var mousePos = (Vector2)cam.ScreenToWorldPoint(Input.mousePosition);
+        lineRenderer.SetPosition(0,firePoint.position);
+        lineRenderer.SetPosition(1,mousePos);
+
+        Vector2 direction = mousePos - (Vector2) transform.position;
+        RaycastHit2D hit = Physics2D.Raycast((Vector2) transform.position,direction.normalized,direction.magnitude,pickupsLayer);
+
+        if (hit) {
+            lineRenderer.SetPosition(1,hit.point);
+        }
+    }
+
+    private void DisableLaser()
+    {
+        lineRenderer.enabled = false;
     }
 }
