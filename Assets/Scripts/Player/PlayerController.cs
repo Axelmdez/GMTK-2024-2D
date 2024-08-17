@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -18,7 +19,7 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rb;
     public bool isGrounded;
-    private GameObject heldItem;
+    private Box heldItem;
 
 
     public Camera cam;
@@ -93,11 +94,11 @@ public class PlayerController : MonoBehaviour
         {
             if (heldItem == null)
             {
-                // Try to pick up an item
+                // Try to pick up a box
                 RaycastHit2D hit = Physics2D.Raycast(transform.position, raycastDirection, raycastDistance,pickupsLayer);
-                if (hit.collider != null)
+                if (hit.collider != null && (hit.collider.CompareTag("Throwable") || hit.collider.CompareTag("Liftable")))
                 {
-                    heldItem = hit.collider.gameObject;
+                    heldItem = hit.collider.GetComponent<Box>();
                     heldItem.GetComponent<Rigidbody2D>().isKinematic = true;
                     holdPoint.position += Vector3.up * holdDistance;
                     heldItem.transform.position = holdPoint.position;
@@ -107,11 +108,11 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                // Throw the item
+                // Throw the box
                 heldItem.transform.parent = null;
                 Rigidbody2D heldRb = heldItem.GetComponent<Rigidbody2D>();
                 heldRb.isKinematic = false;
-                heldRb.velocity = new Vector2(transform.localScale.x * throwForce, 0);
+                heldRb.velocity = new Vector2(transform.localScale.x * (((int)heldItem.boxType) < 1 ? throwForce : throwForce/3), 0);
                 heldItem = null;
                 holdPoint.position -= Vector3.up * holdDistance;
             }

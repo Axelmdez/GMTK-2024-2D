@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Liftable
+  - Pushable
+  - Throwable
   layers:
   - Default
   - TransparentFX
@@ -12,8 +15,8 @@ TagManager:
   - Water
   - UI
   - Platforms
-  - Pickups
-  - Laser
+  - Boxes
+  - 
   - 
   - 
   - 
@@ -43,6 +46,9 @@ TagManager:
     locked: 0
   - name: LevelWalls
     uniqueID: 1905638085
+    locked: 0
+  - name: Boxes
+    uniqueID: 420617963
     locked: 0
   - name: Default
     uniqueID: 0
