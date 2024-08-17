@@ -40,7 +40,6 @@ public class Box : MonoBehaviour
         }
         else
         {
-            // 放大模式
             switch (boxType)
             {
                 case BoxType.small:

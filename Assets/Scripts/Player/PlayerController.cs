@@ -88,7 +88,7 @@ public class PlayerController : MonoBehaviour
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer) || Physics2D.OverlapCircle(groundCheck.position, 0.2f, pickupsLayer);
     }
-    //private Transform boxParent;
+
     void HandleInteraction()
     {
         raycastDirection = transform.right * transform.localScale.x; 
@@ -102,10 +102,13 @@ public class PlayerController : MonoBehaviour
                 if (hit.collider != null && (hit.collider.CompareTag("Throwable") || hit.collider.CompareTag("Liftable")))
                 {
                     heldItem = hit.collider.GetComponent<Box>();
-                    heldItem.GetComponent<Rigidbody2D>().isKinematic = true;
+                    //heldItem.GetComponent<Rigidbody2D>().isKinematic = true;
+                    Rigidbody2D heldRb = heldItem.GetComponent<Rigidbody2D>();
+                    heldRb.velocity = Vector2.zero;  
+                    heldRb.angularVelocity = 0f;    
+                    heldRb.isKinematic = true;
                     holdPoint.position += Vector3.up * holdDistance;
                     heldItem.transform.position = holdPoint.position;
-                    //boxParent = heldItem.GetComponentInParent<Transform>();
                     heldItem.transform.parent = transform; 
                 }
             }
