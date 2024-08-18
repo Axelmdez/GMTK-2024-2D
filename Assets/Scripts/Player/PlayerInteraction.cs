@@ -51,4 +51,9 @@ public class PlayerInteraction : MonoBehaviour
             }
         }
     }
+
+    public bool HoldingItem()
+    {
+        return heldItem != null;
+    }
 }

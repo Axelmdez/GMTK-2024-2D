@@ -18,12 +18,15 @@ public class PlayerShooting : MonoBehaviour
     private Transform hitTransform;
     private bool shrinkMode;
 
+    private PlayerInteraction playerInteraction;
+
     void Start()
     {
         lineRenderer.enabled = false;
         facingLeft = false;
         isTiming = false;
         shrinkMode = false;
+        playerInteraction = GetComponent<PlayerInteraction>();
     }
 
     void Update()
@@ -41,21 +44,23 @@ public class PlayerShooting : MonoBehaviour
     }
 
     void Shoot()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            EnableLaser();
-        }
+    {   if (!playerInteraction.HoldingItem()) {
+            if (Input.GetMouseButtonDown(0))
+            {
+                EnableLaser();
+            }
 
-        if (Input.GetMouseButton(0))
-        {
-            UpdateLaser();
-        }
+            if (Input.GetMouseButton(0))
+            {
+                UpdateLaser();
+            }
 
-        if (Input.GetMouseButtonUp(0))
-        {
-            DisableLaser();
+            if (Input.GetMouseButtonUp(0))
+            {
+                DisableLaser();
+            }
         }
+        
     }
 
     private void EnableLaser()
@@ -71,6 +76,13 @@ public class PlayerShooting : MonoBehaviour
 
         Vector2 direction = mousePos - (Vector2)firePoint.position;
         direction.Normalize();
+        if (transform.localScale.x < 0)
+        {
+            facingLeft = true;
+        }
+        else { 
+            facingLeft = false;
+        }
         Vector2 characterDirection = facingLeft ? Vector2.left : Vector2.right;
         float angle = Vector2.Angle(characterDirection, direction);
 

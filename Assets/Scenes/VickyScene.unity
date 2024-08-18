@@ -174,6 +174,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9138032580624551584, guid: d96c3c823988f204da6e1a7ecba047c9, type: 3}
+      propertyPath: m_Follow
+      value: 
+      objectReference: {fileID: 453999094}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -440,6 +444,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 229217215362230663, guid: 2acd0b87271b8704ca40abe2ff967c0d, type: 3}
+      propertyPath: m_GravityScale
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1759269524583067885, guid: 2acd0b87271b8704ca40abe2ff967c0d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.33
@@ -484,6 +492,26 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 176621311}
+    - target: {fileID: 2155853973800656658, guid: 2acd0b87271b8704ca40abe2ff967c0d, type: 3}
+      propertyPath: laserMaxAngle
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2155853973800656658, guid: 2acd0b87271b8704ca40abe2ff967c0d, type: 3}
+      propertyPath: boxTransformTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7223309534778999784, guid: 2acd0b87271b8704ca40abe2ff967c0d, type: 3}
+      propertyPath: jumpForce
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7223309534778999784, guid: 2acd0b87271b8704ca40abe2ff967c0d, type: 3}
+      propertyPath: defaultGravity
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7223309534778999784, guid: 2acd0b87271b8704ca40abe2ff967c0d, type: 3}
+      propertyPath: lowJumpGravity
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8175364975274150376, guid: 2acd0b87271b8704ca40abe2ff967c0d, type: 3}
       propertyPath: m_Name
       value: Player (1)
@@ -810,6 +838,11 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!4 &453999094 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1759269524583067885, guid: 2acd0b87271b8704ca40abe2ff967c0d, type: 3}
+  m_PrefabInstance: {fileID: 323373623}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &675575831
 GameObject:
   m_ObjectHideFlags: 0

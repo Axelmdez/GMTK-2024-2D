@@ -4,12 +4,18 @@ public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public float jumpForce = 10f;
+    public float hangTime = .3f;
+    public float jumpBufferLength = .5f;
+    public float lowJumpGravity = 2f;
+    public float defaultGravity = 3f;
     public LayerMask groundLayer;
     public LayerMask pickupsLayer;
     public Transform GroundCheckPoint;
-
+    
     private Rigidbody2D rb;
     private bool isGrounded;
+    private float hangTimer;
+    private float jumpBufferTimer;
 
     void Start()
     {
@@ -40,9 +46,42 @@ public class PlayerMovement : MonoBehaviour
 
     void Jump()
     {
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        // Gravity Scale
+        if (rb.velocity.y > 0)
+        {
+            rb.gravityScale = lowJumpGravity;
+        }
+        else {
+            rb.gravityScale = defaultGravity;
+        }
+        // Hang Time
+        if (isGrounded)
+        {
+            hangTimer = hangTime;
+        }
+        else { 
+            hangTimer -= Time.deltaTime;
+        }
+
+        // Jump Buffer
+        if (Input.GetButtonDown("Jump"))
+        {
+            jumpBufferTimer = jumpBufferLength;
+        }
+        else { 
+            jumpBufferTimer -= Time.deltaTime;
+        }
+
+        if (jumpBufferTimer >= 0f && hangTimer >= 0f)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            jumpBufferTimer = 0;
+            Debug.Log("is jumping");
+        }
+        // Small Jump
+        if (Input.GetButtonUp("Jump") && rb.velocity.y > 0)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * .5f);
             Debug.Log("is jumping");
         }
     }
