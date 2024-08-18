@@ -1,17 +1,5 @@
 using UnityEngine;
 
-enum AudioTypes
-{
-    steps,
-    pickups,
-    jumping,
-    landing,
-    throwing,
-    menuTaps,
-    boxHit,
-    boxScaling
-}
-
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
@@ -20,6 +8,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource sfxSource;
     public AudioSource ambienceSource;
     public AudioSource reverbSource;
+    public AudioSource menuSource;
 
     private void Awake()
     {
@@ -33,13 +22,13 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    public void PlayRandomizedSFXs(AudioClip[] clips) => sfxSource.PlayOneShot(clips[Random.Range(0, clips.Length-1)]); 
 
     public void PlaySFX(AudioClip clip) 
     {
         sfxSource.clip = clip;
         sfxSource.PlayOneShot(clip);
     }
-    public void PlayRandomizedSFXs(AudioClip[] clips) => sfxSource.PlayOneShot(clips[Random.Range(0, clips.Length-1)]); 
 
     public void PlayMusic(AudioClip clip)
     {
