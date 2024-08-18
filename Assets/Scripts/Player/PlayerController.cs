@@ -15,7 +15,6 @@ public class PlayerController : MonoBehaviour
     public float throwForce = 10f;
     public GameObject projectilePrefab;
 
-    private PlayerAudio playerAudio;
     
 
     private Rigidbody2D rb;
@@ -42,7 +41,6 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        playerAudio = GetComponent<PlayerAudio>();
 
         DisableLaser();
         facingLeft = false;
