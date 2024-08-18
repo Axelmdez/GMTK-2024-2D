@@ -9,6 +9,12 @@ public class Box : MonoBehaviour
     public GameObject mediumPrefab;
     public GameObject largePrefab;
 
+    private BoxAudio boxAudio;
+    private void Start()
+    {
+        boxAudio = GetComponent<BoxAudio>();
+    }
+
     public void BoxTransform(Transform hitTransform, bool isShrink)
     {
         Vector2 boxPosition = Vector2.zero;
@@ -20,7 +26,7 @@ public class Box : MonoBehaviour
 
         if (isShrink)
         {
-
+            boxAudio.PlayScalingSound(0); //0 for shrink
             switch (boxType)
             {
                 case BoxType.large:
@@ -40,6 +46,8 @@ public class Box : MonoBehaviour
         }
         else
         {
+            boxAudio.PlayScalingSound(1); //1 for growth
+
             switch (boxType)
             {
                 case BoxType.small:
@@ -65,9 +73,14 @@ public class Box : MonoBehaviour
             newChild.transform.position = boxPosition;
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        boxAudio.PlayHitSound();
+    }
 }
 
-    public enum BoxType
+public enum BoxType
 {
     small,
     medium,
