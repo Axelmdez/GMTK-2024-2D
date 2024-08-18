@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     public float throwForce = 10f;
     public GameObject projectilePrefab;
 
+    private PlayerAudio playerAudio;
     
 
     private Rigidbody2D rb;
@@ -41,6 +42,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        playerAudio = GetComponent<PlayerAudio>();
+
         DisableLaser();
         facingLeft = false;
         isTiming = false;
@@ -63,6 +66,8 @@ public class PlayerController : MonoBehaviour
     {
         float moveInput = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
+
+        //playerAudio.PlayWalkSound();
 
         // Flip character sprite based on movement direction
         if (moveInput > 0)
