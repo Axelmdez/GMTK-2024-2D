@@ -8,7 +8,7 @@ public class Bouncy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") || other.CompareTag("SmallBox"))
+        if (other.CompareTag("Player") || other.CompareTag("Throwable"))
         {
             Rigidbody2D rb = other.GetComponent<Rigidbody2D>();
             if (rb != null)
