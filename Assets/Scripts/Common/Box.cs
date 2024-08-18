@@ -26,7 +26,7 @@ public class Box : MonoBehaviour
 
         if (isShrink)
         {
-            boxAudio.PlayScalingSound(0); //0 for shrink
+            boxAudio.PlayScalingSoundDown(); //0 for shrink
             switch (boxType)
             {
                 case BoxType.large:
@@ -46,7 +46,7 @@ public class Box : MonoBehaviour
         }
         else
         {
-            boxAudio.PlayScalingSound(1); //1 for growth
+            boxAudio.PlayScalingSoundUp(); //1 for growth
 
             switch (boxType)
             {

@@ -26,11 +26,11 @@ public class PlayerAudio : MonoBehaviour
 
     public void PlayShootingSound() => PlaySoundsWithDelay(shootingClips, 0.5f); //we'll need to play with this a bit
 
-    private void PlaySoundsWithDelay(AudioClip[] walkClips, float coolDown = -1f)
+    private void PlaySoundsWithDelay(AudioClip[] audioClips, float coolDown = -1f)
     {
         if (Time.time >= lastSoundTime + (coolDown == -1f ? soundCooldown : coolDown))
         {
-            AudioManager.instance.PlayRandomizedSFXs(walkClips);
+            AudioManager.instance.PlayRandomizedSFXs(audioClips, AudioGroups.Player);
             lastSoundTime = Time.time;
         }
     } 
