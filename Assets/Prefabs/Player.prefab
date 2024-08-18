@@ -676,8 +676,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c570938faf536db46b9fc69b62c2475e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  jumpForce: 10
+  moveSpeed: 8
+  jumpForce: 14
+  hangTime: 0.3
+  jumpBufferLength: 0.5
+  lowJumpGravity: 2
+  defaultGravity: 3
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -685,6 +689,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   GroundCheckPoint: {fileID: 7069115841770329336}
+  acceleration: 800
+  deceleration: 500
 --- !u!114 &8418223987977197884
 MonoBehaviour:
   m_ObjectHideFlags: 0
