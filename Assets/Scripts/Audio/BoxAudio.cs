@@ -12,13 +12,14 @@ public class BoxAudio : MonoBehaviour
 
     public void PlayHitSound() => PlaySoundsWithDelay(hitSurfaceClips);
 
-    public void PlayScalingSound(int index) => AudioManager.instance.PlaySFX(scalingClips[index]);
+    public void PlayScalingSoundDown() => AudioManager.instance.PlaySFX(scalingClips[0], AudioGroups.BoxScaleDown);
+    public void PlayScalingSoundUp() => AudioManager.instance.PlaySFX(scalingClips[1], AudioGroups.BoxScaleUp);
 
-    private void PlaySoundsWithDelay(AudioClip[] walkClips, float coolDown = -1f)
+    private void PlaySoundsWithDelay(AudioClip[] audioClips, float coolDown = -1f)
     {
         if (Time.time >= lastSoundTime + (coolDown == -1f ? soundCooldown : coolDown))
         {
-            AudioManager.instance.PlayRandomizedSFXs(walkClips);
+            AudioManager.instance.PlayRandomizedSFXs(audioClips, AudioGroups.BoxHitSurface);
             lastSoundTime = Time.time;
         }
     }
