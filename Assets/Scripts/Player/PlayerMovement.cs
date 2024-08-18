@@ -1,3 +1,4 @@
+using System.IO.IsolatedStorage;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -22,8 +23,11 @@ public class PlayerMovement : MonoBehaviour
     private float jumpBufferTimer;
     private float currentSpeed;
 
+    private PlayerAudio playerAudio;
+
     void Start()
     {
+        playerAudio = GetComponent<PlayerAudio>();
         rb = GetComponent<Rigidbody2D>();
 
     }
@@ -63,6 +67,9 @@ public class PlayerMovement : MonoBehaviour
             currentSpeed = 0f;
             rb.velocity = new Vector2(0f, rb.velocity.y);
         }
+
+        
+        if (rb.velocity.magnitude > 0 && isGrounded) playerAudio.PlayWalkSound(); 
 
         if (moveInput > 0)
         {
@@ -107,18 +114,27 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             jumpBufferTimer = 0;
             Debug.Log("is jumping");
+            playerAudio.PlayJumpSound();
         }
         // Small Jump
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0)
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * .5f);
             Debug.Log("is jumping");
+            
         }
     }
-
+     
     void CheckGround()
     {
+        var wasInAir = !isGrounded == true; 
+
         isGrounded = Physics2D.OverlapCircle(GroundCheckPoint.position, 0.2f, groundLayer) || Physics2D.OverlapCircle(GroundCheckPoint.position, 0.2f, pickupsLayer);
+
+        if ((wasInAir && isGrounded))
+        {
+            playerAudio.PlayLandingSound();
+        }
     }
 
     private void TurnRight()

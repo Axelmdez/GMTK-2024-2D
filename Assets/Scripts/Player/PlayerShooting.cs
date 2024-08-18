@@ -19,9 +19,11 @@ public class PlayerShooting : MonoBehaviour
     private bool shrinkMode;
 
     private PlayerInteraction playerInteraction;
+    private PlayerAudio playerAudio;
 
     void Start()
     {
+        playerAudio = GetComponent<PlayerAudio>();
         lineRenderer.enabled = false;
         facingLeft = false;
         isTiming = false;
@@ -47,6 +49,7 @@ public class PlayerShooting : MonoBehaviour
     {   if (!playerInteraction.HoldingItem()) {
             if (Input.GetMouseButtonDown(0))
             {
+                playerAudio.PlayShootingSound();
                 EnableLaser();
             }
 

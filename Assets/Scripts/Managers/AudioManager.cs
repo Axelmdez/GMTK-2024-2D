@@ -1,13 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
-{ 
+{
     public static AudioManager instance;
-    
-    public AudioSource audioSource;
-    public AudioSource audioEffect;
+
+    public AudioSource musicSource;
+    public AudioSource sfxSource;
+    public AudioSource ambienceSource;
+    public AudioSource reverbSource;
+    public AudioSource menuSource;
 
     private void Awake()
     {
@@ -18,29 +19,36 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
-            DontDestroyOnLoad(gameObject);
+            Destroy(gameObject);
         }
+    }
+    public void PlayRandomizedSFXs(AudioClip[] clips) => sfxSource.PlayOneShot(clips[Random.Range(0, clips.Length-1)]); 
+
+    public void PlaySFX(AudioClip clip) 
+    {
+        sfxSource.clip = clip;
+        sfxSource.PlayOneShot(clip);
     }
 
     public void PlayMusic(AudioClip clip)
     {
-        audioSource.clip = clip;
-        audioSource.Play();
+        musicSource.clip = clip;
+        musicSource.Play();
+    }
+    public void PlayAmbience(AudioClip clip)
+    {
+        ambienceSource.clip = clip;
+        ambienceSource.Play();
+    }
+    public void PlayReverb(AudioClip clip)
+    {
+        reverbSource.clip = clip;
+        reverbSource.Play();
     }
 
-    public void PlaySoundEffect(AudioClip clip)
-    {
-        audioEffect.clip = clip;
-        audioEffect.Play();
-    }
+    public void StopReverb() => reverbSource.Stop();
+    public void StopAmbience() => ambienceSource.Stop();
+    public void StopMusic() => musicSource.Stop();
+    public void StopSFX() => sfxSource.Stop();
 
-    public void StopMusic()
-    {
-        audioSource.Stop();
-    }
-
-    public void StopEffect()
-    {
-        audioEffect.Stop();
-    }
 }
