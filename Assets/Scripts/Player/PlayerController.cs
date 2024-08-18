@@ -65,13 +65,10 @@ public class PlayerController : MonoBehaviour
         if (moveInput > 0)
         {
             TurnRight();
-
-            //transform.localScale = new Vector3(1, 1, 1);
         }
         else if (moveInput < 0)
         {
             TurnLeft();
-            //transform.localScale = new Vector3(-1, 1, 1);
         }
     }
 
@@ -109,7 +106,8 @@ public class PlayerController : MonoBehaviour
                     heldRb.isKinematic = true;
                     holdPoint.position += Vector3.up * holdDistance;
                     heldItem.transform.position = holdPoint.position;
-                    heldItem.transform.parent = transform; 
+                    heldItem.transform.parent = transform;
+
                 }
             }
             else
@@ -133,22 +131,26 @@ public class PlayerController : MonoBehaviour
     }
     void Shoot()
     {
+        if (heldItem == null) {
+            if (Input.GetMouseButtonDown(0))
+            {
+
+                // anim.SetTrigger("attackAnimation");
+                EnableLaser();
+            }
+
+            if (Input.GetMouseButton(0))
+            {
+                UpdateLaser();
+
+            }
+
+            if (Input.GetMouseButtonUp(0))
+            {
+                DisableLaser();
+            }
+        }
         
-        if (Input.GetMouseButtonDown(0))
-        {
-
-            // anim.SetTrigger("attackAnimation");
-            EnableLaser();
-        }
-
-        if (Input.GetMouseButton(0)) {
-            UpdateLaser();
-
-        }
-
-        if (Input.GetMouseButtonUp(0)) {
-            DisableLaser();
-        }
         
     }
 

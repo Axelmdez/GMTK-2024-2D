@@ -639,6 +639,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2268672481796719100, guid: 2acd0b87271b8704ca40abe2ff967c0d, type: 3}
+      propertyPath: defaultLayer.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2268672481796719100, guid: 2acd0b87271b8704ca40abe2ff967c0d, type: 3}
+      propertyPath: defaultlayer.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2268672481796719100, guid: 2acd0b87271b8704ca40abe2ff967c0d, type: 3}
       propertyPath: pickupsLayer.m_Bits
       value: 128
       objectReference: {fileID: 0}
