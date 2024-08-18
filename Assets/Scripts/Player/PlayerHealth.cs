@@ -7,13 +7,12 @@ public class PlayerHealth : MonoBehaviour
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        initialPosition = transform.position;
+        rb = GetComponent<Rigidbody2D>(); 
+        
     }
 
     public void TakeDamage()
-    {
-        transform.position = initialPosition;
+    { 
         rb.velocity = Vector2.zero;
         Debug.Log("Player took damage and respawned!");
     }

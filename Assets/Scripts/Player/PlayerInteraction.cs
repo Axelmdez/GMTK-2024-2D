@@ -11,7 +11,12 @@ public class PlayerInteraction : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 raycastDirection;
     private float raycastDistance = 1f;
+    private PlayerAudio playerAudio;
 
+    void Start()
+    {
+        playerAudio = GetComponent<PlayerAudio>();
+    }
     void Update()
     {
         HandleInteraction();

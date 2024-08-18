@@ -11,8 +11,11 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private bool isGrounded;
 
+    private PlayerAudio playerAudio;
+
     void Start()
     {
+        playerAudio = GetComponent<PlayerAudio>();
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -27,6 +30,8 @@ public class PlayerMovement : MonoBehaviour
     {
         float moveInput = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
+
+        if (rb.velocity.magnitude > 0) playerAudio.PlayWalkSound();
 
         if (moveInput > 0)
         {

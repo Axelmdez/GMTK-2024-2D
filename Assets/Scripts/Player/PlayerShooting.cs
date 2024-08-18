@@ -18,8 +18,11 @@ public class PlayerShooting : MonoBehaviour
     private Transform hitTransform;
     private bool shrinkMode;
 
+    private PlayerAudio playerAudio;
+
     void Start()
     {
+        playerAudio = GetComponent<PlayerAudio>();
         lineRenderer.enabled = false;
         facingLeft = false;
         isTiming = false;
