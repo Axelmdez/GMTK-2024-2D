@@ -5,10 +5,9 @@ using UnityEngine;
 public class MenuAudio : MonoBehaviour
 {
     [SerializeField] private AudioClip[] menuTaps;
-    [SerializeField] private AudioClip menuError;
+    [SerializeField] private AudioClip menuError; 
 
+    public void PlayMenuTaps() => AudioManager.instance.PlayRandomizedSFXs(menuTaps, AudioGroups.Click);
 
-    public void PlayMenuTaps() => AudioManager.instance.PlayRandomizedSFXs(menuTaps);
-
-    public void PlayMenuError() => AudioManager.instance.PlaySFX(menuError);
+    public void PlayMenuError() => AudioManager.instance.PlaySFX(menuError, AudioGroups.Error);
 }

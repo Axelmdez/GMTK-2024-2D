@@ -14,16 +14,13 @@ public class LevelManager : MonoBehaviour
 
     private void Awake()
     { 
-        if (Instance == null)
-        {
-            Instance = this;
-            levelAudio = GetComponent<LevelAudio>();
-            DontDestroyOnLoad(gameObject); 
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        Instance = this;
+        levelAudio = GetComponent<LevelAudio>(); 
+    }
+
+    private void Start()
+    {
+        levelAudio.PlaySceneMusic();
     }
 
     public void GoalReached()

@@ -1,14 +1,40 @@
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+
+
+public enum AudioGroups
+{
+    Main,
+    Music,
+    Ambience,
+    Environment,
+    DoorOpen,
+    DoorClose,
+    BoxHitSurface,
+    Menu,
+    WinFail,
+    Click,
+    Error,
+    Player,
+    Footsteps,
+    Jump,
+    Land,
+    ShootScaleUp,
+    ShootScaleDown,
+    BoxPickup,
+    BoxThrow,
+    BoxScaleDown,
+    BoxScaleUp,
+    LaserHitSurface
+}
+
 
 public class AudioManager : MonoBehaviour
 {
-    public static AudioManager instance;
+    public static AudioManager instance; 
 
-    public AudioSource musicSource;
-    public AudioSource sfxSource;
-    public AudioSource ambienceSource;
-    public AudioSource reverbSource;
-    public AudioSource menuSource;
+    public Dictionary<AudioGroups, AudioSource> audioSources = new Dictionary<AudioGroups, AudioSource>();
 
     private void Awake()
     {
@@ -16,39 +42,50 @@ public class AudioManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+            SetupAudioSources();
         }
         else
         {
             Destroy(gameObject);
         }
     }
-    public void PlayRandomizedSFXs(AudioClip[] clips) => sfxSource.PlayOneShot(clips[Random.Range(0, clips.Length-1)]); 
 
-    public void PlaySFX(AudioClip clip) 
+    private void SetupAudioSources()
     {
-        sfxSource.clip = clip;
-        sfxSource.PlayOneShot(clip);
-    }
-
-    public void PlayMusic(AudioClip clip)
-    {
-        musicSource.clip = clip;
-        musicSource.Play();
-    }
-    public void PlayAmbience(AudioClip clip)
-    {
-        ambienceSource.clip = clip;
-        ambienceSource.Play();
-    }
-    public void PlayReverb(AudioClip clip)
-    {
-        reverbSource.clip = clip;
-        reverbSource.Play();
+        foreach (Transform child in transform)
+        {
+            AudioSource source = child.GetComponent<AudioSource>();
+            if (source != null)
+            {
+                AudioGroups soundType;
+                if (System.Enum.TryParse(child.name, out soundType))
+                {
+                    audioSources.Add(soundType, source);
+                }
+                else
+                {
+                    Debug.LogWarning("No matching enum for sound: " + child.name);
+                }
+            }
+        }
     }
 
-    public void StopReverb() => reverbSource.Stop();
-    public void StopAmbience() => ambienceSource.Stop();
-    public void StopMusic() => musicSource.Stop();
-    public void StopSFX() => sfxSource.Stop();
+    public void PlayMusic(AudioClip clip, AudioGroups group)
+    {
+        audioSources[group].clip = clip;
+        audioSources[group].Play(); 
+    }
+
+    public void PlayRandomizedSFXs(AudioClip[] clips, AudioGroups group)
+    {
+        audioSources[group].PlayOneShot(clips[Random.Range(0, clips.Length - 1)]);
+    }
+
+    public void PlaySFX(AudioClip clip, AudioGroups group) 
+    {
+        audioSources[group].clip = clip;
+        audioSources[group].PlayOneShot(clip);
+    } 
+    public void StopGroup(AudioGroups group) => audioSources[group].Stop(); 
 
 }
