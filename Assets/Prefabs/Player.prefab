@@ -572,7 +572,10 @@ GameObject:
   - component: {fileID: 1759269524583067885}
   - component: {fileID: 1155374385301749889}
   - component: {fileID: 229217215362230663}
-  - component: {fileID: 2268672481796719100}
+  - component: {fileID: 7223309534778999784}
+  - component: {fileID: 8418223987977197884}
+  - component: {fileID: 2155853973800656658}
+  - component: {fileID: 3489011448804859429}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -661,7 +664,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &2268672481796719100
+--- !u!114 &7223309534778999784
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -670,31 +673,70 @@ MonoBehaviour:
   m_GameObject: {fileID: 8175364975274150376}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 944d04f264074424b9238679e075bd7b, type: 3}
+  m_Script: {fileID: 11500000, guid: c570938faf536db46b9fc69b62c2475e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  jumpForce: 15
-  groundCheck: {fileID: 7069115841770329336}
+  jumpForce: 10
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
   pickupsLayer:
     serializedVersion: 2
     m_Bits: 128
+  GroundCheckPoint: {fileID: 7069115841770329336}
+--- !u!114 &8418223987977197884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8175364975274150376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e0442fe455a5df4888da5591f578713, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   holdPoint: {fileID: 3365816402182440114}
   holdDistance: 2
   throwForce: 10
-  projectilePrefab: {fileID: 0}
-  isGrounded: 0
+  pickupsLayer:
+    serializedVersion: 2
+    m_Bits: 128
+--- !u!114 &2155853973800656658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8175364975274150376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc28f9d03960bb142bc625421d3bdedb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   cam: {fileID: 0}
   lineRenderer: {fileID: 4888845313990649594}
   firePoint: {fileID: 6046736382459421101}
+  pickupsLayer:
+    serializedVersion: 2
+    m_Bits: 128
   laserLength: 100
   laserLerpSpeed: 5
-  laserMaxAngle: 50
-  box: {fileID: 0}
-  boxTransformTime: 1
+  laserMaxAngle: 100
+  boxTransformTime: 2
+--- !u!114 &3489011448804859429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8175364975274150376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 085e0a6718d708a4d975da207dcf5a4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9059737787836852023
 GameObject:
   m_ObjectHideFlags: 0

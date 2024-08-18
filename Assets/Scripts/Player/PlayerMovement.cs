@@ -4,9 +4,9 @@ public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public float jumpForce = 10f;
-    public Transform groundCheck;
     public LayerMask groundLayer;
     public LayerMask pickupsLayer;
+    public Transform GroundCheckPoint;
 
     private Rigidbody2D rb;
     private bool isGrounded;
@@ -49,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
 
     void CheckGround()
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer) || Physics2D.OverlapCircle(groundCheck.position, 0.2f, pickupsLayer);
+        isGrounded = Physics2D.OverlapCircle(GroundCheckPoint.position, 0.2f, groundLayer) || Physics2D.OverlapCircle(GroundCheckPoint.position, 0.2f, pickupsLayer);
     }
 
     private void TurnRight()
