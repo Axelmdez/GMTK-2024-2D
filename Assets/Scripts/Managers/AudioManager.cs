@@ -1,13 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
-{ 
+{
     public static AudioManager instance;
-    
-    public AudioSource audioSource;
-    public AudioSource audioEffect;
+
+    public AudioSource musicSource;
+    public AudioSource sfxSource;
 
     private void Awake()
     {
@@ -18,29 +16,25 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
-            DontDestroyOnLoad(gameObject);
+            Destroy(gameObject);
         }
+    }
+
+    public void PlaySFX(AudioClip clip) => sfxSource.PlayOneShot(clip); 
+
+    public void PlayRandomizedSFX(AudioClip clip)
+    {
+        sfxSource.pitch = Random.Range(0.95f, 1.05f);
+        sfxSource.PlayOneShot(clip);
     }
 
     public void PlayMusic(AudioClip clip)
     {
-        audioSource.clip = clip;
-        audioSource.Play();
+        musicSource.clip = clip;
+        musicSource.Play();
     }
 
-    public void PlaySoundEffect(AudioClip clip)
-    {
-        audioEffect.clip = clip;
-        audioEffect.Play();
-    }
+    public void StopMusic() => musicSource.Stop();
+    public void StopSFX() => sfxSource.Stop();
 
-    public void StopMusic()
-    {
-        audioSource.Stop();
-    }
-
-    public void StopEffect()
-    {
-        audioEffect.Stop();
-    }
 }
