@@ -18,8 +18,11 @@ public class PlayerShooting : MonoBehaviour
     private Transform hitTransform;
     private bool shrinkMode;
 
+    private PlayerAudio playerAudio;
+
     void Start()
     {
+        playerAudio = GetComponent<PlayerAudio>();
         lineRenderer.enabled = false;
         facingLeft = false;
         isTiming = false;
@@ -44,6 +47,7 @@ public class PlayerShooting : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            playerAudio.PlayShootingSound();
             EnableLaser();
         }
 

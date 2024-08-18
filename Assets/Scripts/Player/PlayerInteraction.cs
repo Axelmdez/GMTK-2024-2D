@@ -11,7 +11,12 @@ public class PlayerInteraction : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 raycastDirection;
     private float raycastDistance = 1f;
+    private PlayerAudio playerAudio;
 
+    void Start()
+    {
+        playerAudio = GetComponent<PlayerAudio>();
+    }
     void Update()
     {
         HandleInteraction();
@@ -29,6 +34,7 @@ public class PlayerInteraction : MonoBehaviour
                 RaycastHit2D hit = Physics2D.Raycast(transform.position, raycastDirection, raycastDistance, pickupsLayer);
                 if (hit.collider != null && (hit.collider.CompareTag("Throwable") || hit.collider.CompareTag("Liftable")))
                 {
+                    playerAudio.PlayPickupSound();
                     heldItem = hit.collider.GetComponent<Box>();
                     Rigidbody2D heldRb = heldItem.GetComponent<Rigidbody2D>();
                     heldRb.velocity = Vector2.zero;
@@ -42,6 +48,7 @@ public class PlayerInteraction : MonoBehaviour
             else
             {
                 // Throw the box
+                playerAudio.PlayThrowSound();
                 heldItem.transform.parent = null;
                 Rigidbody2D heldRb = heldItem.GetComponent<Rigidbody2D>();
                 heldRb.isKinematic = false;
