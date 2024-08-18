@@ -10,66 +10,83 @@ public class Box : MonoBehaviour
     public GameObject largePrefab;
 
     private BoxAudio boxAudio;
+    private Rigidbody2D rb;
+
     private void Start()
     {
         boxAudio = GetComponent<BoxAudio>();
+        rb = GetComponent<Rigidbody2D>();
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("WindZone"))
+        {
+            AreaEffector2D areaEffector = other.GetComponent<AreaEffector2D>();
+
+            if (areaEffector != null)
+            {
+                switch (boxType)
+                {
+                    case BoxType.small:
+                        areaEffector.enabled = true;
+                        break;
+                    case BoxType.medium:
+                        areaEffector.enabled = true;
+                        break;
+                    case BoxType.large:
+                        areaEffector.enabled = false;
+                        break;
+                }
+            }
+        }
     }
 
     public void BoxTransform(Transform hitTransform, bool isShrink)
     {
-        Vector2 boxPosition = Vector2.zero;
-
-        
-        boxPosition = hitTransform.position;
-
+        Vector2 boxPosition = hitTransform.position;
         GameObject newChild = null;
 
         if (isShrink)
         {
-            boxAudio.PlayScalingSoundDown(); //0 for shrink
+            boxAudio.PlayScalingSoundDown(); // 0 for shrink
             switch (boxType)
             {
                 case BoxType.large:
-                    newChild = Object.Instantiate(mediumPrefab);
+                    newChild = Instantiate(mediumPrefab);
                     boxType = BoxType.medium;
                     break;
-
                 case BoxType.medium:
-                    newChild = Object.Instantiate(smallPrefab);
+                    newChild = Instantiate(smallPrefab);
                     boxType = BoxType.small;
                     break;
-
                 case BoxType.small:
                     Debug.Log("Box is already small, cannot shrink further.");
-                    return; 
+                    return;
             }
         }
         else
         {
-            boxAudio.PlayScalingSoundUp(); //1 for growth
-
+            boxAudio.PlayScalingSoundUp(); // 1 for growth
             switch (boxType)
             {
                 case BoxType.small:
-                    newChild = Object.Instantiate(mediumPrefab);
+                    newChild = Instantiate(mediumPrefab);
                     boxType = BoxType.medium;
                     break;
-
                 case BoxType.medium:
-                    newChild = Object.Instantiate(largePrefab);
+                    newChild = Instantiate(largePrefab);
                     boxType = BoxType.large;
                     break;
-
                 case BoxType.large:
                     Debug.Log("Box is already large, cannot transform further.");
-                    return; 
+                    return;
             }
         }
 
         if (newChild != null)
         {
-
-            Object.Destroy(hitTransform.gameObject);
+            Destroy(hitTransform.gameObject);
             newChild.transform.position = boxPosition;
         }
     }

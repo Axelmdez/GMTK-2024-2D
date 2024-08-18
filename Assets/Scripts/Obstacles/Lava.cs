@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class Lava : MonoBehaviour
 {
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (other.CompareTag("Player"))
+        if (collision.CompareTag("Player"))
         {
-            PlayerHealth player = other.GetComponent<PlayerHealth>();
-            if (player != null)
-            {
-                player.TakeDamage();
-            }
+            LevelManager.Instance.ReloadThisScene();
         }
     }
 }

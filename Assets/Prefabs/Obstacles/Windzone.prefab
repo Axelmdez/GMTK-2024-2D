@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 803137113022171605}
   m_Layer: 0
   m_Name: Windzone
-  m_TagString: Untagged
+  m_TagString: WindZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
