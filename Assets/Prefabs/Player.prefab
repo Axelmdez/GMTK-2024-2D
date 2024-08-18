@@ -730,8 +730,8 @@ MonoBehaviour:
     m_Bits: 128
   laserLength: 100
   laserLerpSpeed: 5
-  laserMaxAngle: 100
-  boxTransformTime: 2
+  laserMaxAngle: 80
+  boxTransformTime: 1
 --- !u!114 &3489011448804859429
 MonoBehaviour:
   m_ObjectHideFlags: 0
