@@ -194,6 +194,10 @@ PrefabInstance:
       propertyPath: m_ScreenY
       value: 0.4
       objectReference: {fileID: 0}
+    - target: {fileID: 6214204567655090224, guid: d96c3c823988f204da6e1a7ecba047c9, type: 3}
+      propertyPath: m_LookaheadSmoothing
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 9138032580624551584, guid: d96c3c823988f204da6e1a7ecba047c9, type: 3}
       propertyPath: m_Follow
       value: 
