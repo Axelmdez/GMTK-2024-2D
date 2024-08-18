@@ -1,49 +1,37 @@
+using System;
 using UnityEngine;
 
 public class PlayerAudio : MonoBehaviour
 {
-    public AudioClip walkClip;
-    public AudioClip jumpClip;
-    public AudioClip pickupClip;
-    public AudioClip throwClip;
-    public AudioClip pushClip;
+    public AudioClip[] walkClips;
+    public AudioClip[] jumpClips;
+    public AudioClip[] landingClips;
+    public AudioClip[] pickupClips;
+    public AudioClip[] throwClips;
+    public AudioClip[] shootingClips;
+    //public AudioClip pushClip;
 
-    public void PlayWalkSound() => AudioManager.instance.PlayRandomizedSFX(walkClip);
-    
-    public void PlayJumpSound() => AudioManager.instance.PlaySFX(jumpClip);
-    
-    public void PlayPickupSound() => AudioManager.instance.PlaySFX(pickupClip);
-    
-    public void PlayThrowSound() => AudioManager.instance.PlaySFX(throwClip);
-    
-    public void PlayPushSound() => AudioManager.instance.PlaySFX(pushClip);
+    private float soundCooldown = 0.5f;  // Time between most sounds 
+    private float lastSoundTime;
 
-    // Example triggers based on player actions
-    private void Update()
+    public void PlayWalkSound() => PlaySoundsWithDelay(walkClips);
+
+    public void PlayJumpSound() => PlaySoundsWithDelay(jumpClips);
+
+    public void PlayLandingSound() => PlaySoundsWithDelay(landingClips);
+
+    public void PlayPickupSound() => PlaySoundsWithDelay(pickupClips,0f);
+    
+    public void PlayThrowSound() => PlaySoundsWithDelay(throwClips);
+
+    public void PlayShootingSound() => PlaySoundsWithDelay(shootingClips, 0.5f); //we'll need to play with this a bit
+
+    private void PlaySoundsWithDelay(AudioClip[] walkClips, float coolDown = -1f)
     {
-        if (Input.GetButtonDown("Jump"))
+        if (Time.time >= lastSoundTime + (coolDown == -1f ? soundCooldown : coolDown))
         {
-            PlayJumpSound();
+            AudioManager.instance.PlayRandomizedSFXs(walkClips);
+            lastSoundTime = Time.time;
         }
-
-        if (Input.GetButtonDown("Pickup"))
-        {
-            PlayPickupSound();
-        }
-
-        if (Input.GetButtonDown("Throw"))
-        {
-            PlayThrowSound();
-        }
-
-        if (Input.GetButton("Push"))
-        {
-            PlayPushSound();
-        }
-
-        if (Input.GetButton("Walk"))
-        {
-            PlayWalkSound();
-        }
-    }
+    } 
 }

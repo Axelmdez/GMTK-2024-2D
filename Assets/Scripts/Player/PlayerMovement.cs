@@ -1,3 +1,4 @@
+using System.IO.IsolatedStorage;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -31,7 +32,8 @@ public class PlayerMovement : MonoBehaviour
         float moveInput = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
 
-        if (rb.velocity.magnitude > 0) playerAudio.PlayWalkSound();
+        
+        if (rb.velocity.magnitude > 0 && isGrounded) playerAudio.PlayWalkSound(); 
 
         if (moveInput > 0)
         {
@@ -48,13 +50,20 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-            Debug.Log("is jumping");
+            playerAudio.PlayJumpSound();
         }
     }
-
+     
     void CheckGround()
     {
+        var wasInAir = !isGrounded == true; 
+
         isGrounded = Physics2D.OverlapCircle(GroundCheckPoint.position, 0.2f, groundLayer) || Physics2D.OverlapCircle(GroundCheckPoint.position, 0.2f, pickupsLayer);
+
+        if ((wasInAir && isGrounded))
+        {
+            playerAudio.PlayLandingSound();
+        }
     }
 
     private void TurnRight()

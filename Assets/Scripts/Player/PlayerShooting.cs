@@ -47,6 +47,7 @@ public class PlayerShooting : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            playerAudio.PlayShootingSound();
             EnableLaser();
         }
 
