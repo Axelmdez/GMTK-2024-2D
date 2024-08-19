@@ -31,17 +31,21 @@ public class PlayerAiming : MonoBehaviour
         gunPivot.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
          
         FlipGunSprite(angle);
-    }
+    } 
 
     void FlipGunSprite(float angle)
     {
         if (angle > 90 || angle < -90)
         { 
             gunPivot.transform.localScale = new Vector3(1, -1, 1);
+            playerSpriteRenderer.flipX = true;
         }
         else
         { 
             gunPivot.transform.localScale = new Vector3(1, 1, 1);
+            playerSpriteRenderer.flipX = false;
         }
+
+        
     }
 }
