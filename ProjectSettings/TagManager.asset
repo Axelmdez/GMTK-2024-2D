@@ -57,3 +57,6 @@ TagManager:
   - name: Boxes
     uniqueID: 420617963
     locked: 0
+  - name: Pointer
+    uniqueID: 2262064101
+    locked: 0
