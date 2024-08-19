@@ -20,12 +20,13 @@ public class PlayerInteraction : MonoBehaviour
     private PlayerAudio playerAudio;
 
     private PlayerAiming playerAiming;
-
+    private PlayerMovement playerMovement;
     
 
 
     void Start()
     {
+        playerMovement = GetComponent<PlayerMovement>();
         playerAiming = GetComponent<PlayerAiming>();
         playerAudio = GetComponent<PlayerAudio>();
     }
@@ -148,7 +149,10 @@ public class PlayerInteraction : MonoBehaviour
         heldItem.transform.parent = null;
         Rigidbody2D heldRb = heldItem.GetComponent<Rigidbody2D>();
         heldRb.isKinematic = false;
-        heldRb.velocity = new Vector2(transform.localScale.x * (((int)heldItem.boxType) < 1 ? throwForce : throwForce / 3), 0);
+
+        var leftOrRight = playerMovement.GetIsLeft() ? -1 : 1;
+
+        heldRb.velocity = (new Vector2(transform.localScale.x * (((int)heldItem.boxType) < 1 ? throwForce : throwForce / 3) * leftOrRight, 0)) ;
         heldItem = null;
         armsHoldingPoint.gameObject.SetActive(false);
         armsAimPoint.gameObject.SetActive(true);
