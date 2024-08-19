@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
@@ -12,7 +13,7 @@ public class PlayerInteraction : MonoBehaviour
     private Vector2 raycastDirection;
     private float raycastDistance = 1f;
     private PlayerAudio playerAudio;
-
+    public static event Action tryExit;
     void Start()
     {
         playerAudio = GetComponent<PlayerAudio>();
@@ -56,6 +57,8 @@ public class PlayerInteraction : MonoBehaviour
                 heldItem = null;
                 holdPoint.position -= Vector3.up * holdDistance;
             }
+
+            tryExit?.Invoke();
         }
     }
 

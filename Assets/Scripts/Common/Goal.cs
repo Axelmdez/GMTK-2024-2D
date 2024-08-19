@@ -8,6 +8,7 @@ public class Goal : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            
             LevelManager.Instance.GoalReached();
         }
     }

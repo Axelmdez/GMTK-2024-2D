@@ -2,11 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ButtonBehaviour : MonoBehaviour
+public class ExitButtons : MonoBehaviour
 {
-    public DoorBehaviour door;
-    public bool isDoorOpenButton;
-    public bool isDoorCloseButton;
+    public ExitDoor door;
     float buttonSizeY;
     Vector3 buttonUpPos;
     Vector3 buttonDownPos;
@@ -69,14 +67,9 @@ public class ButtonBehaviour : MonoBehaviour
     {
         if (collision.CompareTag("Pushable"))
         {
-
             isPressed = !isPressed;
 
-            if (isDoorOpenButton && !door.isDoorOpen)
-            {
-                door.isDoorOpen = !door.isDoorOpen;
-            }
-            else if (isDoorCloseButton && door.isDoorOpen)
+            if (!door.isDoorOpen)
             {
                 door.isDoorOpen = !door.isDoorOpen;
             }
@@ -86,6 +79,7 @@ public class ButtonBehaviour : MonoBehaviour
     IEnumerator ButtonUpDelay(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
+        door.isDoorOpen = !door.isDoorOpen;
         isPressed = false;
     }
 
@@ -93,7 +87,10 @@ public class ButtonBehaviour : MonoBehaviour
     {
         if (collision.CompareTag("Pushable"))
         {
-            StartCoroutine(ButtonUpDelay(buttonDelay));
+            if (gameObject.activeInHierarchy)
+            {
+                StartCoroutine(ButtonUpDelay(buttonDelay));
+            }
         }
     }
 }
