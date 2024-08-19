@@ -258,7 +258,7 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 0}
-  m_Follow: {fileID: 1759269524583067885, guid: 2acd0b87271b8704ca40abe2ff967c0d, type: 3}
+  m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 60
     OrthographicSize: 7
@@ -322,7 +322,7 @@ Transform:
   m_GameObject: {fileID: 4217790210429294600}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.8227612, y: -0.45924997, z: -10}
+  m_LocalPosition: {x: -1.8150803, y: 1.7444401, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -542,8 +542,8 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: -0.67651355, y: 10.132933}
-      - {x: -15.491164, y: 10.127272}
-      - {x: -15.597927, y: -9.561412}
-      - {x: 14.414031, y: -9.603695}
-      - {x: 14.322653, y: 10.069851}
+      - {x: -27.620876, y: 10.127272}
+      - {x: -27.58237, y: -9.343513}
+      - {x: 31.894402, y: -9.420973}
+      - {x: 32.10756, y: 10.008944}
   m_UseDelaunayMesh: 0
