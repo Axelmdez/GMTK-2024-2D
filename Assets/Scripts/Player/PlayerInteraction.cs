@@ -38,7 +38,8 @@ public class PlayerInteraction : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {  
             if (heldItem == null)
-            { 
+            {
+                
                 TryPickUpBox();
             }
             else
@@ -68,10 +69,16 @@ public class PlayerInteraction : MonoBehaviour
                 float distanceToBox = Vector2.Distance(transform.position, box.transform.position);
                 if (distanceToBox <= pickupRange)
                 {
+
                     PickUpBox(box);
                     return;
                 }
+                else {
+                    Debug.Log("Picking it up: Distance" + distanceToBox);
+                }
             }
+           
+
 
             
         }
