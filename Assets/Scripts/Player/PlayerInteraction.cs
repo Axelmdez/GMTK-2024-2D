@@ -135,7 +135,7 @@ public class PlayerInteraction : MonoBehaviour
 
         playerAiming.DisableAiming();
 
-        holdDistance = heldItem.boxType == BoxType.small ? 1.5f : 2f;
+        holdDistance = heldItem.boxType == BoxType.small ? 0f : .5f;
 
         armsHoldingPoint.gameObject.SetActive(true);
         heldItem.transform.position = armsHoldingPoint.position + Vector3.up * holdDistance;
@@ -152,7 +152,7 @@ public class PlayerInteraction : MonoBehaviour
 
         var leftOrRight = playerMovement.GetIsLeft() ? -1 : 1;
 
-        heldRb.velocity = (new Vector2(transform.localScale.x * (((int)heldItem.boxType) < 1 ? throwForce : throwForce / 3) * leftOrRight, 0)) ;
+        heldRb.velocity = (new Vector2(transform.localScale.x * (((int)heldItem.boxType) < 1 ? throwForce * 1.5f : throwForce / 3) * leftOrRight, 1)) ;
         heldItem = null;
         armsHoldingPoint.gameObject.SetActive(false);
         armsAimPoint.gameObject.SetActive(true);
