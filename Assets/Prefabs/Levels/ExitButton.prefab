@@ -189,4 +189,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6a520144871c714b8b651b4f245477e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   door: {fileID: 0}
+=======
+  door: {fileID: 6170104232130401481, guid: 0c77a1d6d90797b4d8db03c303e08eb3, type: 3}
+  pressedClip: {fileID: 8300000, guid: 73f27ce68925e2340907fc0222f8cf8c, type: 3}
+  releasedClip: {fileID: 8300000, guid: 7eb6f2102be6d3346ab70aedac6a1b87, type: 3}
+>>>>>>> main
