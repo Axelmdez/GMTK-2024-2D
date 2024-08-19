@@ -8,6 +8,7 @@ TagManager:
   - Pushable
   - Throwable
   - WindZone
+  - Elevator
   layers:
   - Default
   - TransparentFX

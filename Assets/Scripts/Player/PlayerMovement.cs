@@ -135,6 +135,7 @@ public class PlayerMovement : MonoBehaviour
         {
             playerAudio.PlayLandingSound();
         }
+
     }
 
     private void TurnRight()

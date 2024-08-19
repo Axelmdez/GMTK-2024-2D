@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class ButtonBehaviour : MonoBehaviour
 {
-    public DoorBehaviour door;
-    public bool isDoorOpenButton;
-    public bool isDoorCloseButton;
+    [Tooltip("This could only be one of: Obstacle door, elevator, rotating platform, wind obstacle")]
+    public ObstacleBehaviour obstacleLinked;
+    [Tooltip("Switch on mode: only and always turn the obstacle effects on, can also use switch off mode together")]
+    public bool ObstacleTriggerButton;
+    [Tooltip("Switch off mode: only and always turn the obstacle effects off, can also use switch on mode together")]
+    public bool ObstacleUntriggerButton;
+    [Tooltip("If this is checked, other two booleans cannot be checked!!! this button mode need to be held(large box should stay on top) to trigger obstacle")]
+    public bool ElevatorButton;
     float buttonSizeY;
     Vector3 buttonUpPos;
     Vector3 buttonDownPos;
@@ -69,16 +74,18 @@ public class ButtonBehaviour : MonoBehaviour
     {
         if (collision.CompareTag("Pushable"))
         {
-
             isPressed = !isPressed;
 
-            if (isDoorOpenButton && !door.isDoorOpen)
+            if (ObstacleTriggerButton && !obstacleLinked.isTriggered)
             {
-                door.isDoorOpen = !door.isDoorOpen;
+                obstacleLinked.isTriggered = !obstacleLinked.isTriggered;
             }
-            else if (isDoorCloseButton && door.isDoorOpen)
+            else if (ObstacleUntriggerButton && obstacleLinked.isTriggered)
             {
-                door.isDoorOpen = !door.isDoorOpen;
+                obstacleLinked.isTriggered = !obstacleLinked.isTriggered;
+            }
+            else if (ElevatorButton) {
+                obstacleLinked.isTriggered = true;
             }
         }
     }
@@ -87,6 +94,9 @@ public class ButtonBehaviour : MonoBehaviour
     {
         yield return new WaitForSeconds(waitTime);
         isPressed = false;
+        if (ElevatorButton) {
+            obstacleLinked.isTriggered = false;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -96,4 +106,5 @@ public class ButtonBehaviour : MonoBehaviour
             StartCoroutine(ButtonUpDelay(buttonDelay));
         }
     }
+
 }

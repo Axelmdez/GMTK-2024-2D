@@ -2,31 +2,44 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Elevator : MonoBehaviour
+public class Elevator : ObstacleBehaviour
 {
     public Transform startPoint;
     public Transform endPoint;
     public float speed = 2f;
     public float waitTime = 2f;
-
+    public bool isWaiting = true;
+    public Transform player;
     private bool movingToEnd;
-    private bool isWaiting;
+    private bool isBoxLifted;
+    
+    
 
     private void Start()
     {
         transform.position = startPoint.position;
         movingToEnd = true;
-        isWaiting = false;
     }
 
-    private void Update()
+    private void Awake()
+    {
+        PlayerInteraction.boxLifted += ChangeIsBoxLifted; ;
+    }
+
+    private void ChangeIsBoxLifted()
+    {
+        isBoxLifted = true;
+    }
+
+    /*
+    protected override void Update()
     {
         if (!isWaiting)
         {
             MovePlatform();
         }
     }
-
+    */
     void MovePlatform()
     {
         if (movingToEnd)
@@ -54,5 +67,45 @@ public class Elevator : MonoBehaviour
         isWaiting = true;
         yield return new WaitForSeconds(waitTime);
         isWaiting = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player") || collision.CompareTag("Throwable") || collision.CompareTag("Liftable")) {
+
+            collision.transform.SetParent(this.transform);
+            
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player") )
+        {
+            
+            collision.transform.SetParent(null);
+        }
+        if (collision.CompareTag("Throwable") || collision.CompareTag("Liftable"))
+        {
+            Transform boxParent = collision.transform.parent;
+
+            if (!isBoxLifted)
+            {
+                collision.transform.SetParent(null);
+            }
+            else { 
+                collision.transform.SetParent(player);
+            }
+        }
+    }
+
+    public override void EnableObstacle()
+    {
+        MovePlatform();
+    }
+
+    public override void DisableObstacle()
+    {
+        isWaiting = true;
     }
 }

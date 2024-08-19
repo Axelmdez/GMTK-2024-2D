@@ -14,6 +14,7 @@ public class PlayerInteraction : MonoBehaviour
     private float raycastDistance = 1f;
     private PlayerAudio playerAudio;
     public static event Action tryExit;
+    public static event Action boxLifted;
     void Start()
     {
         playerAudio = GetComponent<PlayerAudio>();
@@ -41,6 +42,7 @@ public class PlayerInteraction : MonoBehaviour
                     heldRb.velocity = Vector2.zero;
                     heldRb.angularVelocity = 0f;
                     heldRb.isKinematic = true;
+                    Debug.Log($"Held Item Mass: {heldRb.mass}, Drag: {heldRb.drag}");
                     holdPoint.position += Vector3.up * holdDistance;
                     heldItem.transform.position = holdPoint.position;
                     heldItem.transform.parent = transform;
@@ -52,13 +54,15 @@ public class PlayerInteraction : MonoBehaviour
                 playerAudio.PlayThrowSound();
                 heldItem.transform.parent = null;
                 Rigidbody2D heldRb = heldItem.GetComponent<Rigidbody2D>();
+                Debug.Log($"Held Item Mass: {heldRb.mass}, Drag: {heldRb.drag}");
                 heldRb.isKinematic = false;
                 heldRb.velocity = new Vector2(transform.localScale.x * (((int)heldItem.boxType) < 1 ? throwForce : throwForce / 3), 0);
                 heldItem = null;
                 holdPoint.position -= Vector3.up * holdDistance;
             }
 
-            tryExit?.Invoke();
+            tryExit?.Invoke();  
+            boxLifted?.Invoke();
         }
     }
 
