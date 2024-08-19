@@ -4,19 +4,20 @@ using UnityEngine;
 public class PlayerAudio : MonoBehaviour
 {
     public AudioClip[] walkClips;
+    public float walkCoolDown = .5f;
     public AudioClip[] jumpClips;
+    public float jumpCoolDown = .5f; 
     public AudioClip[] landingClips;
     public AudioClip[] pickupClips;
     public AudioClip[] throwClips;
-    public AudioClip[] shootingClips;
-    //public AudioClip pushClip;
+    public AudioClip[] shootingClips; 
 
-    private float soundCooldown = 0.5f;  // Time between most sounds 
+    private float soundCooldown = 0.5f;  
     private float lastSoundTime;
 
     public void PlayWalkSound() => PlaySoundsWithDelay(walkClips);
 
-    public void PlayJumpSound() => PlaySoundsWithDelay(jumpClips);
+    public void PlayJumpSound() => PlaySoundsWithDelay(jumpClips,0f);
 
     public void PlayLandingSound() => PlaySoundsWithDelay(landingClips);
 
