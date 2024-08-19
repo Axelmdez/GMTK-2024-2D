@@ -356,7 +356,7 @@ GameObject:
   - component: {fileID: 345686159}
   - component: {fileID: 345686160}
   m_Layer: 0
-  m_Name: holding hand (1)
+  m_Name: holding hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1179,7 +1179,7 @@ GameObject:
   - component: {fileID: 763245869}
   - component: {fileID: 763245870}
   m_Layer: 0
-  m_Name: shooting hand (1)
+  m_Name: shooting hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1893,7 +1893,7 @@ GameObject:
   - component: {fileID: 1381767106}
   - component: {fileID: 1381767107}
   m_Layer: 0
-  m_Name: Gun_Sprite (1)
+  m_Name: Gun_Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2258,67 +2258,6 @@ Transform:
   - {fileID: 460141974}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1526036413
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1759269524583067885, guid: 2acd0b87271b8704ca40abe2ff967c0d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -4.33
-      objectReference: {fileID: 0}
-    - target: {fileID: 1759269524583067885, guid: 2acd0b87271b8704ca40abe2ff967c0d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -3.18
-      objectReference: {fileID: 0}
-    - target: {fileID: 1759269524583067885, guid: 2acd0b87271b8704ca40abe2ff967c0d, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1759269524583067885, guid: 2acd0b87271b8704ca40abe2ff967c0d, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1759269524583067885, guid: 2acd0b87271b8704ca40abe2ff967c0d, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1759269524583067885, guid: 2acd0b87271b8704ca40abe2ff967c0d, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1759269524583067885, guid: 2acd0b87271b8704ca40abe2ff967c0d, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1759269524583067885, guid: 2acd0b87271b8704ca40abe2ff967c0d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1759269524583067885, guid: 2acd0b87271b8704ca40abe2ff967c0d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1759269524583067885, guid: 2acd0b87271b8704ca40abe2ff967c0d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8175364975274150376, guid: 2acd0b87271b8704ca40abe2ff967c0d, type: 3}
-      propertyPath: m_Name
-      value: Player (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8175364975274150376, guid: 2acd0b87271b8704ca40abe2ff967c0d, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 2acd0b87271b8704ca40abe2ff967c0d, type: 3}
 --- !u!1 &1651197385
 GameObject:
   m_ObjectHideFlags: 0
@@ -2637,22 +2576,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6147295018667160956}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1045098338757962055
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6075781648706299293}
-  m_Layer: 0
-  m_Name: pos1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!70 &1155374385817540640
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -2719,7 +2642,6 @@ Transform:
   - {fileID: 6448214776215152191}
   - {fileID: 7069115842353220697}
   - {fileID: 8566873567675477762}
-  - {fileID: 6075781648706299293}
   - {fileID: 4695096272656945569}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3039,7 +2961,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4695096272656945569}
   m_Layer: 0
-  m_Name: Arms
+  m_Name: ArmsAiming
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3268,21 +3190,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6147295018667160956}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &6075781648706299293
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1045098338757962055}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0.0047042742, w: 0.999989}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
-  m_Children: []
-  m_Father: {fileID: 1759269525166221388}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &6147295018667160956
 Transform:
   m_ObjectHideFlags: 0
@@ -3343,12 +3250,12 @@ GameObject:
   m_Component:
   - component: {fileID: 8566873567675477762}
   m_Layer: 0
-  m_Name: pos2
+  m_Name: ArmsHolding
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7069115842353220697
 Transform:
   m_ObjectHideFlags: 0
@@ -3567,12 +3474,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e0442fe455a5df4888da5591f578713, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  holdPoint: {fileID: 4695096272656945569}
+  armsHoldingPoint: {fileID: 8566873567675477762}
+  armsAimPoint: {fileID: 4695096272656945569}
   holdDistance: 2
   throwForce: 10
   pickupsLayer:
     serializedVersion: 2
     m_Bits: 128
+  pickupRange: 2
 --- !u!4 &8566873567675477762
 Transform:
   m_ObjectHideFlags: 0
@@ -3605,7 +3514,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunPivot: {fileID: 4695096272656945569}
   crosshair: {fileID: 124234144}
-  storedGunPosition: {fileID: 1153110007}
   playerSpriteRenderer: {fileID: 0}
 --- !u!1 &9059737787287256982
 GameObject:
@@ -3634,7 +3542,6 @@ SceneRoots:
   - {fileID: 1498012554}
   - {fileID: 210857011}
   - {fileID: 722363121}
-  - {fileID: 1526036413}
   - {fileID: 1759269525166221388}
   - {fileID: 7886127245826325143}
   - {fileID: 1189825971}
