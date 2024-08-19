@@ -87,10 +87,9 @@ public class PlayerShooting : MonoBehaviour
             facingLeft = false;
         }
         Vector2 characterDirection = facingLeft ? Vector2.left : Vector2.right;
-        float angle = Vector2.Angle(characterDirection, direction);
-
+        float angle = Vector2.SignedAngle(characterDirection, direction);
         if (angle > laserMaxAngle)
-        {
+        {   
             float sign = Mathf.Sign(Vector2.SignedAngle(characterDirection, direction));
             Quaternion rotation = Quaternion.AngleAxis(laserMaxAngle * sign, Vector3.forward);
             direction = rotation * characterDirection;
