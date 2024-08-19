@@ -138,13 +138,25 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// can't use transform.localScale anymore.
+    /// switch to sprite renderer flip x/y when we get the player sprites
+    /// </summary>
+    /// 
+
+    bool isLeft;
+
+    public bool GetIsLeft() => isLeft;
+
     private void TurnRight()
     {
-        transform.localScale = new Vector3(1, 1, 1);
+        isLeft = false;
+        //transform.localScale = new Vector3(1, 1, 1);
     }
 
     private void TurnLeft()
     {
-        transform.localScale = new Vector3(-1, 1, 1);
+        isLeft = true;
+        //transform.localScale = new Vector3(-1, 1, 1);
     }
 }
