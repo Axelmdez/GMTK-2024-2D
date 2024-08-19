@@ -11,7 +11,10 @@ public class ExitButtons : MonoBehaviour
     float buttonSpeed = 1f;
     float buttonDelay = .2f;
     bool isPressed = false;
-    
+
+    [SerializeField] AudioClip pressedClip;
+    [SerializeField] AudioClip releasedClip;
+
     void Awake()
     {
         buttonSizeY = transform.localScale.y;
@@ -23,11 +26,11 @@ public class ExitButtons : MonoBehaviour
     {
         if (isPressed)
         {
-            MoveButtonDown();
+            MoveButtonDown(); 
         }
-        else
+        else 
         {
-            MoveButtonUp();
+            MoveButtonUp();  
         }
     }
 
@@ -68,7 +71,7 @@ public class ExitButtons : MonoBehaviour
         if (collision.CompareTag("Pushable"))
         {
             isPressed = !isPressed;
-
+            AudioManager.instance.PlaySFX(pressedClip, AudioGroups.Button);
             if (!door.isDoorOpen)
             {
                 door.isDoorOpen = !door.isDoorOpen;
@@ -90,6 +93,7 @@ public class ExitButtons : MonoBehaviour
             if (gameObject.activeInHierarchy)
             {
                 StartCoroutine(ButtonUpDelay(buttonDelay));
+                AudioManager.instance.PlaySFX(releasedClip, AudioGroups.Button);
             }
         }
     }
