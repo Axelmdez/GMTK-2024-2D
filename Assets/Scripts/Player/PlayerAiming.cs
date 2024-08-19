@@ -38,14 +38,17 @@ public class PlayerAiming : MonoBehaviour
         if (angle > 90 || angle < -90)
         { 
             gunPivot.transform.localScale = new Vector3(1, -1, 1);
-            playerSpriteRenderer.flipX = true;
+            FlipPlayerSprite(true);
         }
         else
         { 
             gunPivot.transform.localScale = new Vector3(1, 1, 1);
-            playerSpriteRenderer.flipX = false;
+            FlipPlayerSprite(false);
         }
 
-        
+    }
+    public void FlipPlayerSprite(bool flip)
+    {
+        playerSpriteRenderer.flipX = flip;
     }
 }

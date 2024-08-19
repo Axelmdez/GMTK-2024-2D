@@ -13,7 +13,6 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundLayer;
     public LayerMask pickupsLayer;
     public Transform GroundCheckPoint;
-    
     public float acceleration = 500f;    
     public float deceleration = 500f;     
 
@@ -22,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     private float hangTimer;
     private float jumpBufferTimer;
     private float currentSpeed;
+    float speedThreshold = 0.1f;
 
     private PlayerAudio playerAudio;
 
@@ -69,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         
-        if (rb.velocity.magnitude > 0 && isGrounded) playerAudio.PlayWalkSound(); 
+        if (rb.velocity.magnitude > speedThreshold && isGrounded) playerAudio.PlayWalkSound(); 
 
         if (moveInput > 0)
         {
