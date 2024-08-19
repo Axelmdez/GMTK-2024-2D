@@ -1000,10 +1000,10 @@ GameObject:
   - component: {fileID: 229217215362230663}
   - component: {fileID: 4238386318088889522}
   - component: {fileID: 556727895519611028}
-  - component: {fileID: 6626391873957852523}
   - component: {fileID: 6453683373957588720}
   - component: {fileID: 9044764466930704315}
   - component: {fileID: 8387980369928919989}
+  - component: {fileID: 6626391873957852523}
   - component: {fileID: 2122230419726804799}
   m_Layer: 0
   m_Name: Player
@@ -1141,29 +1141,6 @@ MonoBehaviour:
     m_Bits: 128
   pickupRange: 3
   playerSprite: {fileID: 6275480042325717581}
---- !u!114 &6626391873957852523
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8175364975274150376}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc28f9d03960bb142bc625421d3bdedb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cam: {fileID: 0}
-  lineRenderer: {fileID: 4866442037697824915}
-  firePoint: {fileID: 2186239989768397445}
-  pickupsLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  laserLength: 100
-  laserLerpSpeed: 100
-  laserMaxAngle: 80
-  boxTransformTime: 1
-  player_sprite: {fileID: 6275480042325717581}
 --- !u!114 &6453683373957588720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1262,6 +1239,45 @@ MonoBehaviour:
   gunPivot: {fileID: 9204657431984379098}
   crosshair: {fileID: 0}
   playerSpriteRenderer: {fileID: 6275480042325717581}
+--- !u!114 &6626391873957852523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8175364975274150376}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc28f9d03960bb142bc625421d3bdedb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 0}
+  lineRenderer: {fileID: 4866442037697824915}
+  firePoint: {fileID: 2186239989768397445}
+  pickupsLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  laserLength: 100
+  laserLerpSpeed: 100
+  laserMaxAngle: 80
+  boxTransformTime: 1
+  player_sprite: {fileID: 6275480042325717581}
+--- !u!114 &2122230419726804799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8175364975274150376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5331cef6eef10f438935aa51ee490da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firePoint: {fileID: 2186239989768397445}
+  shrinkProjectilePrefab: {fileID: 513190283393869173, guid: 1f6d4a6dc67a8664194a91ddbf7398b1, type: 3}
+  growProjectilePrefab: {fileID: 9209364137552230591, guid: 6d774813a2978f248822bdecd2b12f85, type: 3}
+  projectileSpeed: 10
 --- !u!1 &8640038816844017145
 GameObject:
   m_ObjectHideFlags: 0
@@ -1346,22 +1362,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2122230419726804799
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8175364975274150376}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5331cef6eef10f438935aa51ee490da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  firePoint: {fileID: 2186239989768397445}
-  shrinkProjectilePrefab: {fileID: 513190283393869173, guid: 1f6d4a6dc67a8664194a91ddbf7398b1, type: 3}
-  growProjectilePrefab: {fileID: 9209364137552230591, guid: 6d774813a2978f248822bdecd2b12f85, type: 3}
-  projectileSpeed: 10
 --- !u!1 &8854934918266313124
 GameObject:
   m_ObjectHideFlags: 0

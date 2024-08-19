@@ -622,16 +622,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2092917015}
     - target: {fileID: 6626391873957852523, guid: 2acd0b87271b8704ca40abe2ff967c0d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6626391873957852523, guid: 2acd0b87271b8704ca40abe2ff967c0d, type: 3}
       propertyPath: player_sprite
       value: 
       objectReference: {fileID: 879990129}
     - target: {fileID: 6626391873957852523, guid: 2acd0b87271b8704ca40abe2ff967c0d, type: 3}
       propertyPath: laserLerpSpeed
       value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 6626391873957852523, guid: 2acd0b87271b8704ca40abe2ff967c0d, type: 3}
-      propertyPath: m_Enabled
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7216340061736511655, guid: 2acd0b87271b8704ca40abe2ff967c0d, type: 3}
       propertyPath: m_LocalScale.x
@@ -688,6 +688,10 @@ PrefabInstance:
     - target: {fileID: 8795439021191182258, guid: 2acd0b87271b8704ca40abe2ff967c0d, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.701
+      objectReference: {fileID: 0}
+    - target: {fileID: 8854934918266313124, guid: 2acd0b87271b8704ca40abe2ff967c0d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
