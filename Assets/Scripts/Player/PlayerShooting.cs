@@ -10,6 +10,7 @@ public class PlayerShooting : MonoBehaviour
     public float laserLerpSpeed = 5.0f;
     public float laserMaxAngle = 100.0f;
     public float boxTransformTime = 2.0f;
+    public SpriteRenderer player_sprite;
 
     private bool facingLeft;
     private Vector2 laserTargetDirection;
@@ -79,7 +80,7 @@ public class PlayerShooting : MonoBehaviour
 
         Vector2 direction = mousePos - (Vector2)firePoint.position;
         direction.Normalize();
-        if (transform.localScale.x < 0)
+        if (player_sprite.flipX)
         {
             facingLeft = true;
         }
@@ -87,6 +88,19 @@ public class PlayerShooting : MonoBehaviour
             facingLeft = false;
         }
         Vector2 characterDirection = facingLeft ? Vector2.left : Vector2.right;
+        float angle = Vector2.Angle(characterDirection, direction);
+
+        if (angle > laserMaxAngle)
+        {
+            float sign = Mathf.Sign(Vector2.SignedAngle(characterDirection, direction));
+            Quaternion rotation = Quaternion.AngleAxis(laserMaxAngle * sign, Vector3.forward);
+            direction = rotation * characterDirection;
+        }
+
+        laserTargetDirection = Vector2.Lerp(laserTargetDirection, direction, laserLerpSpeed * Time.deltaTime);
+        Vector2 laserEndPoint = (Vector2)firePoint.position + laserTargetDirection * laserLength;
+        lineRenderer.SetPosition(1, laserEndPoint);
+        /*
         float angle = Vector2.SignedAngle(characterDirection, direction);
         if (angle > laserMaxAngle)
         {   
@@ -98,7 +112,7 @@ public class PlayerShooting : MonoBehaviour
         laserTargetDirection = Vector2.Lerp(laserTargetDirection, direction, laserLerpSpeed * Time.deltaTime);
         Vector2 laserEndPoint = (Vector2)firePoint.position + laserTargetDirection * laserLength;
         lineRenderer.SetPosition(1, laserEndPoint);
-
+        */
         RaycastHit2D hit = Physics2D.Raycast(firePoint.position, laserTargetDirection, laserLength, pickupsLayer);
         if (hit)
         {

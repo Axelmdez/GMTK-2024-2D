@@ -11,7 +11,7 @@ public class PlayerInteraction : MonoBehaviour
     public float throwForce = 10f;
     public LayerMask pickupsLayer;
     public float pickupRange = 3f;
-
+    public SpriteRenderer playerSprite;
 
     private Box heldItem; 
     private PlayerAudio playerAudio;
@@ -19,7 +19,7 @@ public class PlayerInteraction : MonoBehaviour
     public static event Action boxLifted;
 
     private PlayerAiming playerAiming;
-    private PlayerMovement playerMovement; 
+    private PlayerMovement playerMovement;
 
 
     void Start()
@@ -31,6 +31,9 @@ public class PlayerInteraction : MonoBehaviour
     void Update()
     {
         HandleInteraction();
+        if (heldItem != null) {
+            FlipAllSprite();
+        }
     }
 
     private void HandleInteraction()
@@ -39,18 +42,51 @@ public class PlayerInteraction : MonoBehaviour
         {  
             if (heldItem == null)
             {
-                
                 TryPickUpBox();
+
             }
             else
             {
-                ThrowBox();
+                ThrowBox(); 
             }
             tryExit?.Invoke();  
             boxLifted?.Invoke();
         }
-    } 
-     
+    }
+
+    private void FlipAllSpriteBack()
+    {
+        bool needFlip = false;
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        needFlip = mousePosition.x < transform.position.x;
+
+        if (needFlip)
+        {
+            playerSprite.flipX = true;
+        }
+        else {
+            playerSprite.flipX = false;
+        }
+
+    }
+
+    private void FlipAllSprite()
+    {   
+        float direction = Input.GetAxis("Horizontal");
+        bool needFlip = false;
+        if (direction < 0)
+        {
+            needFlip = true;
+        }
+        else if (direction == 0) {
+            return;
+        }
+        if (playerSprite != null) 
+        {
+            playerSprite.flipX = needFlip;
+        }
+    }
+
     public bool HoldingItem()
     {
         return heldItem != null;
@@ -67,20 +103,15 @@ public class PlayerInteraction : MonoBehaviour
             if (box != null)
             {
                 float distanceToBox = Vector2.Distance(transform.position, box.transform.position);
-                if (distanceToBox <= pickupRange)
+                if (distanceToBox <= pickupRange && (collider.CompareTag("Throwable") || collider.CompareTag("Liftable")))
                 {
-
                     PickUpBox(box);
                     return;
                 }
                 else {
                     Debug.Log("Picking it up: Distance" + distanceToBox);
                 }
-            }
-           
-
-
-            
+            }  
         }
     }
 
@@ -116,6 +147,7 @@ public class PlayerInteraction : MonoBehaviour
         heldItem = null;
         armsHoldingPoint.gameObject.SetActive(false);
         armsAimPoint.gameObject.SetActive(true);
+        FlipAllSpriteBack();
         playerAiming.EnableAiming();
     }
 }
