@@ -141,9 +141,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a2cc7d13a70ec214ba89472562e7a5ec, type: 3}
   - {fileID: 8300000, guid: 40e02d6aba3d81c499cf8c4f88545417, type: 3}
   - {fileID: 8300000, guid: a9e010c41d35273458208ff53907ba23, type: 3}
-  scalingClips:
-  - {fileID: 8300000, guid: 51f377fa9544b3944ae89bdc74cc4358, type: 3}
-  - {fileID: 8300000, guid: 9c526172000126243b9cdfc66a98cdc9, type: 3}
+  scalingUp: {fileID: 8300000, guid: 63d3523a95e5b534baf2ca7bd0ccfe34, type: 3}
+  scalingDown: {fileID: 8300000, guid: 17a6cb17e1912cd43a5175507e31f65e, type: 3}
 --- !u!1 &467543784973511764
 GameObject:
   m_ObjectHideFlags: 0

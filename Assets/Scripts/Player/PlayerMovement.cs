@@ -105,9 +105,11 @@ public class PlayerMovement : MonoBehaviour
         hangTimer = isGrounded ? hangTime : hangTimer - Time.deltaTime;
 
         // Jump Buffer
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && isGrounded)
         {
             jumpBufferTimer = jumpBufferLength;
+
+            playerAudio.PlayJumpSound();
         }
         else
         {
@@ -118,14 +120,12 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             jumpBufferTimer = 0;
-            playerAudio.PlayJumpSound();
         }
 
-        //if (Input.GetButtonUp("Jump") && rb.velocity.y > 0)
-        //{
-        //    rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * .5f); 
-        //    playerAudio.PlayJumpSound();
-        //}
+        if (Input.GetButtonUp("Jump") && rb.velocity.y > 0)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * .5f); 
+        }
     }
      
     void CheckGround()
