@@ -135,15 +135,20 @@ public class PlayerMovement : MonoBehaviour
         {
             playerAudio.PlayLandingSound();
         }
-    }
+    } 
 
+    /// <summary>
+    /// can't use transform.localScale anymore.
+    /// switch to sprite renderer flip x/y when we get the player sprites
+    /// </summary>
     private void TurnRight()
     {
-        transform.localScale = new Vector3(1, 1, 1);
+        //transform.localScale = new Vector3(1, 1, 1);
     }
 
     private void TurnLeft()
     {
-        transform.localScale = new Vector3(-1, 1, 1);
+        
+        //transform.localScale = new Vector3(-1, 1, 1);
     }
 }

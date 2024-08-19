@@ -2,7 +2,9 @@ using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    public Transform holdPoint;
+    public Transform armsHoldingPoint;
+    public Transform armsAimPoint;
+
     public float holdDistance = 2.0f;
     public float throwForce = 10f;
     public LayerMask pickupsLayer;
@@ -13,8 +15,11 @@ public class PlayerInteraction : MonoBehaviour
     private float raycastDistance = 1f;
     private PlayerAudio playerAudio;
 
+    private PlayerAiming playerAiming;
+
     void Start()
     {
+        playerAiming = GetComponent<PlayerAiming>();
         playerAudio = GetComponent<PlayerAudio>();
     }
     void Update()
@@ -40,9 +45,15 @@ public class PlayerInteraction : MonoBehaviour
                     heldRb.velocity = Vector2.zero;
                     heldRb.angularVelocity = 0f;
                     heldRb.isKinematic = true;
-                    holdPoint.position += Vector3.up * holdDistance;
-                    heldItem.transform.position = holdPoint.position;
+
+                    playerAiming.DisableAiming();
+
+                    holdDistance = heldItem.boxType == BoxType.small ? 1.5f : 2f;
+                     
+                    armsHoldingPoint.gameObject.SetActive(true);
+                    heldItem.transform.position = armsHoldingPoint.position + Vector3.up * holdDistance;
                     heldItem.transform.parent = transform;
+                    armsAimPoint.gameObject.SetActive(false);
                 }
             }
             else
@@ -53,8 +64,10 @@ public class PlayerInteraction : MonoBehaviour
                 Rigidbody2D heldRb = heldItem.GetComponent<Rigidbody2D>();
                 heldRb.isKinematic = false;
                 heldRb.velocity = new Vector2(transform.localScale.x * (((int)heldItem.boxType) < 1 ? throwForce : throwForce / 3), 0);
-                heldItem = null;
-                holdPoint.position -= Vector3.up * holdDistance;
+                heldItem = null; 
+                armsHoldingPoint.gameObject.SetActive(false); 
+                armsAimPoint.gameObject.SetActive(true);
+                playerAiming.EnableAiming();
             }
         }
     }
