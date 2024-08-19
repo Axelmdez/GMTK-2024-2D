@@ -130,9 +130,37 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1105694242454102651, guid: 8f6d7683bf6ec504f9fc10cfbe254209, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4dae20866c87b964f99990786970c77d, type: 3}
+    - target: {fileID: 1105694242454102651, guid: 8f6d7683bf6ec504f9fc10cfbe254209, type: 3}
+      propertyPath: m_Color.b
+      value: 0.6127626
+      objectReference: {fileID: 0}
+    - target: {fileID: 1105694242454102651, guid: 8f6d7683bf6ec504f9fc10cfbe254209, type: 3}
+      propertyPath: m_Color.g
+      value: 0.9622642
+      objectReference: {fileID: 0}
+    - target: {fileID: 1105694242454102651, guid: 8f6d7683bf6ec504f9fc10cfbe254209, type: 3}
+      propertyPath: m_Color.r
+      value: 0.81699705
+      objectReference: {fileID: 0}
     - target: {fileID: 1790261969543228755, guid: 8f6d7683bf6ec504f9fc10cfbe254209, type: 3}
       propertyPath: m_Name
       value: Pointer
+      objectReference: {fileID: 0}
+    - target: {fileID: 2089077440359401361, guid: 8f6d7683bf6ec504f9fc10cfbe254209, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 11.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 2089077440359401361, guid: 8f6d7683bf6ec504f9fc10cfbe254209, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 11.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 2089077440359401361, guid: 8f6d7683bf6ec504f9fc10cfbe254209, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 11.43
       objectReference: {fileID: 0}
     - target: {fileID: 2089077440359401361, guid: 8f6d7683bf6ec504f9fc10cfbe254209, type: 3}
       propertyPath: m_LocalPosition.x
@@ -174,6 +202,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2089077440359401361, guid: 8f6d7683bf6ec504f9fc10cfbe254209, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5632713075928923985, guid: 8f6d7683bf6ec504f9fc10cfbe254209, type: 3}
+      propertyPath: sprites.Array.data[0]
+      value: 
+      objectReference: {fileID: 21300000, guid: 4dae20866c87b964f99990786970c77d, type: 3}
+    - target: {fileID: 5632713075928923985, guid: 8f6d7683bf6ec504f9fc10cfbe254209, type: 3}
+      propertyPath: sprites.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: a33e7e5780e827f45861e15f48c4af7b, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -653,6 +693,10 @@ PrefabInstance:
       propertyPath: cam
       value: 
       objectReference: {fileID: 2092917015}
+    - target: {fileID: 6626391873957852523, guid: 2acd0b87271b8704ca40abe2ff967c0d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7216340061736511655, guid: 2acd0b87271b8704ca40abe2ff967c0d, type: 3}
       propertyPath: m_LocalScale.x
       value: 4.5587254
