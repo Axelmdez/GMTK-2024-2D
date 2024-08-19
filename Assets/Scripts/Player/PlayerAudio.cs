@@ -5,8 +5,7 @@ public class PlayerAudio : MonoBehaviour
 {
     public AudioClip[] walkClips;
     public float walkCoolDown = .5f;
-    public AudioClip[] jumpClips;
-    public float jumpCoolDown = .5f; 
+    public AudioClip[] jumpClips; 
     public AudioClip[] landingClips;
     public AudioClip[] pickupClips;
     public AudioClip[] throwClips;
@@ -15,17 +14,17 @@ public class PlayerAudio : MonoBehaviour
     private float soundCooldown = 0.5f;  
     private float lastSoundTime;
 
-    public void PlayWalkSound() => PlaySoundsWithDelay(walkClips);
+    public void PlayWalkSound() => PlaySoundsWithDelay(walkClips, walkCoolDown);
 
     public void PlayJumpSound() => PlaySoundsWithDelay(jumpClips,0f);
 
-    public void PlayLandingSound() => PlaySoundsWithDelay(landingClips);
+    public void PlayLandingSound() => PlaySoundsWithDelay(landingClips, 0f);
 
     public void PlayPickupSound() => PlaySoundsWithDelay(pickupClips,0f);
     
-    public void PlayThrowSound() => PlaySoundsWithDelay(throwClips);
+    public void PlayThrowSound() => PlaySoundsWithDelay(throwClips, 0f);
 
-    public void PlayShootingSound() => PlaySoundsWithDelay(shootingClips, 0.5f); //we'll need to play with this a bit
+    public void PlayShootingSound() => PlaySoundsWithDelay(shootingClips, 0f); //we'll need to play with this a bit
 
     private void PlaySoundsWithDelay(AudioClip[] audioClips, float coolDown = -1f)
     {
