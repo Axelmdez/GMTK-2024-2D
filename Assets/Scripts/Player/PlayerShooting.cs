@@ -50,7 +50,7 @@ public class PlayerShooting : MonoBehaviour
     {   if (!playerInteraction.HoldingItem()) {
             if (Input.GetMouseButtonDown(0))
             {
-                playerAudio.PlayShootingSound();
+                playerAudio.PlayShootingGrowSound(); //must fix later
                 EnableLaser();
             }
 

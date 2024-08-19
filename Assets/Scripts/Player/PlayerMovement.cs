@@ -82,46 +82,49 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void Jump()
-    {
-        // Gravity Scale
-        if (rb.velocity.y > 0)
-        {
-            rb.gravityScale = lowJumpGravity;
-        }
-        else {
-            rb.gravityScale = defaultGravity;
-        }
-        // Hang Time
-        if (isGrounded)
-        {
-            hangTimer = hangTime;
-        }
-        else { 
-            hangTimer -= Time.deltaTime;
-        }
+    {   
+        //// Gravity Scale
+        //if (rb.velocity.y > 0)
+        //{
+        //    rb.gravityScale = lowJumpGravity;
+        //}
+        //else {
+        //    rb.gravityScale = defaultGravity;
+        //}
+        //// Hang Time
+        //if (isGrounded)
+        //{
+        //    hangTimer = hangTime;
+        //}
+        //else { 
+        //    hangTimer -= Time.deltaTime;
+        //}
+
+        rb.gravityScale = rb.velocity.y > 0 ? lowJumpGravity : defaultGravity;
+        
+        hangTimer = isGrounded ? hangTime : hangTimer - Time.deltaTime;
 
         // Jump Buffer
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && isGrounded)
         {
             jumpBufferTimer = jumpBufferLength;
+
+            playerAudio.PlayJumpSound();
         }
-        else { 
+        else
+        {
             jumpBufferTimer -= Time.deltaTime;
         }
 
-        if (jumpBufferTimer >= 0f && hangTimer >= 0f)
+        if (jumpBufferTimer > 0f && hangTimer > 0f)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             jumpBufferTimer = 0;
-            Debug.Log("is jumping");
-            playerAudio.PlayJumpSound();
         }
-        // Small Jump
+
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0)
         {
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * .5f);
-            Debug.Log("is jumping");
-            
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * .5f); 
         }
     }
      
