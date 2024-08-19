@@ -93,9 +93,13 @@ public class ButtonBehaviour : MonoBehaviour
     IEnumerator ButtonUpDelay(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
-        isPressed = false;
+        
         if (ElevatorButton) {
             obstacleLinked.isTriggered = false;
+            isPressed = false;
+        }
+        if (ObstacleTriggerButton && ObstacleUntriggerButton) {
+            isPressed = false;
         }
     }
 
