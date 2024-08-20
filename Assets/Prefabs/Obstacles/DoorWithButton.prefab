@@ -43,11 +43,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2624237975166118878, guid: 876c9f381b8303f40bf8aeee2a15f3bd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.19
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2624237975166118878, guid: 876c9f381b8303f40bf8aeee2a15f3bd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.84
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2624237975166118878, guid: 876c9f381b8303f40bf8aeee2a15f3bd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -127,17 +127,21 @@ PrefabInstance:
       propertyPath: door
       value: 
       objectReference: {fileID: 2249319569632070741}
+    - target: {fileID: 2802260388745794199, guid: 65c64fbf380243548b0b502b44470b72, type: 3}
+      propertyPath: obstacle
+      value: 
+      objectReference: {fileID: 2249319569632070741}
     - target: {fileID: 3111885320987557754, guid: 65c64fbf380243548b0b502b44470b72, type: 3}
       propertyPath: m_Name
       value: Button
       objectReference: {fileID: 0}
     - target: {fileID: 8798495828561289173, guid: 65c64fbf380243548b0b502b44470b72, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.61
+      value: -3.75
       objectReference: {fileID: 0}
     - target: {fileID: 8798495828561289173, guid: 65c64fbf380243548b0b502b44470b72, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.69
+      value: -1.5
       objectReference: {fileID: 0}
     - target: {fileID: 8798495828561289173, guid: 65c64fbf380243548b0b502b44470b72, type: 3}
       propertyPath: m_LocalPosition.z

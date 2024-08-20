@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Button : MonoBehaviour
 {
-    public Door door;
+    public ObstacleBehaviour obstacle;
     float buttonSizeY;
     Vector3 buttonUpPos;
     Vector3 buttonDownPos;
@@ -26,11 +26,11 @@ public class Button : MonoBehaviour
     {
         if (isPressed)
         {
-            MoveButtonDown(); 
+            MoveButtonDown();
         }
-        else 
+        else
         {
-            MoveButtonUp();  
+            MoveButtonUp();
         }
     }
 
@@ -69,20 +69,17 @@ public class Button : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Pushable"))
-        {
+        { 
             isPressed = !isPressed;
             AudioManager.instance.PlaySFX(pressedClip, AudioGroups.Button);
-            if (door.isTriggered)
-            {
-                door.isTriggered = false;
-            }
+            obstacle.DisableObstacle();
         }
     }
 
     IEnumerator ButtonUpDelay(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
-        door.isTriggered = true;
+        obstacle.EnableObstacle();
         isPressed = false;
     }
 
@@ -91,7 +88,7 @@ public class Button : MonoBehaviour
         if (collision.CompareTag("Pushable"))
         {
             if (gameObject.activeInHierarchy)
-            {
+            { 
                 StartCoroutine(ButtonUpDelay(buttonDelay));
                 AudioManager.instance.PlaySFX(releasedClip, AudioGroups.Button);
             }
