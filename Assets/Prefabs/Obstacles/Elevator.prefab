@@ -189,6 +189,8 @@ MonoBehaviour:
   endPoint: {fileID: 7644152577771861051}
   speed: 2
   waitTime: 0.5
+  isWaiting: 1
+  player: {fileID: 0}
 --- !u!61 &1258740386944931649
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -335,9 +337,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6020015247668976362}
   - {fileID: 8697285389753014003}
   - {fileID: 7644152577771861051}
+  - {fileID: 6020015247668976362}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7008660953793255214
