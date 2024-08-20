@@ -99,13 +99,21 @@ public class Elevator : ObstacleBehaviour
         }
     }
 
+    private void Update()
+    {
+        if(!isWaiting)
+        {
+            MovePlatform();
+        }
+    }
+
     public override void EnableObstacle()
     {
-        MovePlatform();
+        isWaiting = true;
     }
 
     public override void DisableObstacle()
     {
-        isWaiting = true;
+        isWaiting=false;
     }
 }
