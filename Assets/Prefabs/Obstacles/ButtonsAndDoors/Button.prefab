@@ -190,5 +190,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 0}
-  pressedClip: {fileID: 8300000, guid: 73f27ce68925e2340907fc0222f8cf8c, type: 3}
-  releasedClip: {fileID: 8300000, guid: 7eb6f2102be6d3346ab70aedac6a1b87, type: 3}
+  pressedClip: {fileID: 8300000, guid: d01c5c13b35c4594fa2691e029795326, type: 3}
+  releasedClip: {fileID: 8300000, guid: f8f7b73f2db25554fac95bfe64add3bf, type: 3}
