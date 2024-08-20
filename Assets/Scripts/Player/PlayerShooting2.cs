@@ -7,15 +7,18 @@ public class PlayerShooting2 : MonoBehaviour
     public GameObject growProjectilePrefab;
     public float projectileSpeed = 10f;
     private PlayerAudio playerAudio;
-
+    private PlayerInteraction playerInteraction;
 
     private void Awake()
     {
+        playerInteraction = GetComponent<PlayerInteraction>();
         playerAudio = GetComponent<PlayerAudio>();
     }
 
     void Update()
     {
+        if (playerInteraction.HoldingItem()) return;
+    
         HandleShooting();
     }
 

@@ -33,7 +33,7 @@ public class PlayerShooting : MonoBehaviour
     }
 
     void Update()
-    {
+    { 
         UpdateGunMode();
         Shoot();
     }
@@ -50,7 +50,7 @@ public class PlayerShooting : MonoBehaviour
     {   if (!playerInteraction.HoldingItem()) {
             if (Input.GetMouseButtonDown(0))
             {
-                playerAudio.PlayShootingGrowSound(); //must fix later
+                playerAudio.PlayShootingGrowSound(); 
                 EnableLaser();
             }
 
@@ -63,8 +63,7 @@ public class PlayerShooting : MonoBehaviour
             {
                 DisableLaser();
             }
-        }
-        
+        } 
     }
 
     private void EnableLaser()

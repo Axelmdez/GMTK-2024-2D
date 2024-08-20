@@ -8,6 +8,8 @@ public class ObstacleDoor : ObstacleBehaviour
     Vector3 doorOpenPos;
     float doorSpeed = 10f;
 
+    Transform doorSpriteTransform;
+
     private void Awake()
     {
         doorClosePos = transform.position;
