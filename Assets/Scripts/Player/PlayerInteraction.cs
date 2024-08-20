@@ -1,5 +1,6 @@
 using System;
 using Unity.Burst.CompilerServices;
+using UnityEditorInternal;
 using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
@@ -17,6 +18,8 @@ public class PlayerInteraction : MonoBehaviour
     private PlayerAudio playerAudio;
     public static event Action tryExit;
     public static event Action boxLifted;
+    public float playerMassSBox = 3f;
+    public float playerMassMBox = 5f;
 
     private PlayerAiming playerAiming;
     private PlayerMovement playerMovement;
@@ -125,17 +128,33 @@ public class PlayerInteraction : MonoBehaviour
         heldRb.isKinematic = true;
 
         playerAiming.DisableAiming();
-
+        
         holdDistance = heldItem.boxType == BoxType.small ? 0f : .5f;
-
+        Rigidbody2D player = transform.GetComponent<Rigidbody2D>();
+        if (heldItem.boxType == BoxType.small) {
+            player.mass += playerMassSBox;
+        }else if (heldItem.boxType == BoxType.medium)
+        {
+            player.mass += playerMassMBox;
+        }
         armsHoldingPoint.gameObject.SetActive(true);
         heldItem.transform.position = armsHoldingPoint.position + Vector3.up * holdDistance;
         heldItem.transform.parent = transform;
         armsAimPoint.gameObject.SetActive(false);
+
     }
 
     void ThrowBox()
-    { 
+    {
+        Rigidbody2D player = transform.GetComponent<Rigidbody2D>();
+        if (heldItem.boxType == BoxType.small)
+        {
+            player.mass -= playerMassSBox;
+        }
+        else if (heldItem.boxType == BoxType.medium)
+        {
+            player.mass -= playerMassMBox;
+        }
         playerAudio.PlayThrowSound();
         heldItem.transform.parent = null;
         Rigidbody2D heldRb = heldItem.GetComponent<Rigidbody2D>();
@@ -149,5 +168,7 @@ public class PlayerInteraction : MonoBehaviour
         armsAimPoint.gameObject.SetActive(true);
         FlipAllSpriteBack();
         playerAiming.EnableAiming();
+        
+
     }
 }

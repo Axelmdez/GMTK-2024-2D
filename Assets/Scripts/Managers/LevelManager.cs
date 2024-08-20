@@ -36,7 +36,22 @@ public class LevelManager : MonoBehaviour
 
     public void LoadMainMenu()
     {
-        SceneLoader.Instance.LoadLevelByIndex(0);  
+        SceneLoader.Instance.LoadLevelByIndex(0);
+        if (PlayerPrefs.HasKey("Level")) {
+            int sceneIndex = PlayerPrefs.GetInt("Level");
+            if (sceneIndex > 1) {
+                SceneManager.sceneLoaded += SceneManager_MainMenuLoaded;
+                
+            }
+        }
+        
+    }
+
+    private void SceneManager_MainMenuLoaded(Scene arg0, LoadSceneMode arg1)
+    {
+        int sceneIndex = PlayerPrefs.GetInt("Level");
+        SpawnContinueButton.Instance.ContinueButton();
+        SceneManager.sceneLoaded -= SceneManager_MainMenuLoaded;
     }
 
     public void ReloadThisScene()

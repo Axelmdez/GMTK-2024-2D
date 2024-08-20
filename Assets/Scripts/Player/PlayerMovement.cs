@@ -84,6 +84,7 @@ public class PlayerMovement : MonoBehaviour
     void Jump()
     {
         // Gravity Scale
+        /*
         if (rb.velocity.y > 0)
         {
             rb.gravityScale = lowJumpGravity;
@@ -91,6 +92,7 @@ public class PlayerMovement : MonoBehaviour
         else {
             rb.gravityScale = defaultGravity;
         }
+        */
         // Hang Time
         if (isGrounded)
         {
