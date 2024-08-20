@@ -10,14 +10,16 @@ public class RotatingPlatform : ObstacleBehaviour
 {
     public float rotationSpeed = 20f;
 
+    public bool isRotating;
+
     public override void EnableObstacle()
     {
-        isTriggered = false;   
+        isRotating = false;   
     }
 
     public void Update()
     {
-        if (isTriggered) RotatePlatform();
+        if (isRotating) RotatePlatform();
     }
 
     private void RotatePlatform()
@@ -28,6 +30,6 @@ public class RotatingPlatform : ObstacleBehaviour
 
     public override void DisableObstacle()
     {
-        isTriggered = true;    
+        isRotating = true;    
     } 
 }
