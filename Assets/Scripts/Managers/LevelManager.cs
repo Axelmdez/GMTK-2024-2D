@@ -58,7 +58,8 @@ public class LevelManager : MonoBehaviour
     { 
         levelAudio?.PlayFailSound();
         Scene currentScene = SceneManager.GetActiveScene();
-        
+
         SceneManager.LoadScene(currentScene.name);
+
     }
 }

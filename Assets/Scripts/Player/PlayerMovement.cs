@@ -108,7 +108,6 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             jumpBufferTimer = jumpBufferLength;
-
             playerAudio.PlayJumpSound();
         }
         else
@@ -130,11 +129,11 @@ public class PlayerMovement : MonoBehaviour
      
     void CheckGround()
     {
-        var wasInAir = !isGrounded == true; 
+        var wasInAir = !isGrounded; 
 
         isGrounded = Physics2D.OverlapCircle(GroundCheckPoint.position, 0.2f, groundLayer) || Physics2D.OverlapCircle(GroundCheckPoint.position, 0.2f, pickupsLayer);
 
-        if ((wasInAir && isGrounded))
+        if (wasInAir && isGrounded)
         {
             playerAudio.PlayLandingSound();
         }
