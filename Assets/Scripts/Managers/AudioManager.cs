@@ -86,7 +86,7 @@ public class AudioManager : MonoBehaviour
     {
         audioSources[group].clip = clip;
         audioSources[group].PlayOneShot(clip);
-    } 
+    }
     public void StopGroup(AudioGroups group) => audioSources[group].Stop(); 
 
 }

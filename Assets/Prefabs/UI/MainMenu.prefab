@@ -124,6 +124,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainMixer: {fileID: 24100000, guid: 834af11f9b820a24a83b114ace399b9f, type: 2}
   mainSlider: {fileID: 8623045781309936953}
+  musicMixer: {fileID: 24100000, guid: 834af11f9b820a24a83b114ace399b9f, type: 2}
+  musicSlider: {fileID: 7866970217852506496}
+  SFXMixer: {fileID: 24100000, guid: 834af11f9b820a24a83b114ace399b9f, type: 2}
+  SFXSlider: {fileID: 7019142208280494708}
 --- !u!114 &7927166594950878486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -374,7 +378,7 @@ RectTransform:
   m_GameObject: {fileID: 519297408954342569}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.0875, y: 1.85, z: 1}
+  m_LocalScale: {x: 5.0360937, y: 1.85, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4309726967335339004}
@@ -2246,7 +2250,7 @@ MonoBehaviour:
   m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.001
+  m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -2456,13 +2460,25 @@ MonoBehaviour:
   m_FillRect: {fileID: 2491046462854601398}
   m_HandleRect: {fileID: 3099750447298057832}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6038317717849059837}
+        m_TargetAssemblyTypeName: VolumeSettings, Assembly-CSharp
+        m_MethodName: SetSFXMusic
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6350363212547321726
 GameObject:
   m_ObjectHideFlags: 0
@@ -2791,13 +2807,25 @@ MonoBehaviour:
   m_FillRect: {fileID: 5137389205709444359}
   m_HandleRect: {fileID: 8524730777516722164}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.0001
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6038317717849059837}
+        m_TargetAssemblyTypeName: VolumeSettings, Assembly-CSharp
+        m_MethodName: SetMusic
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7517961442969855678
 GameObject:
   m_ObjectHideFlags: 0
