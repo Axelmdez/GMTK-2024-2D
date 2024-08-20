@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -614176684, guid: a9b19853ab4e3594b80a53900a379cd8, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.90943396, g: 0.51992166, b: 0.58718, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -158,7 +158,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -614176684, guid: a9b19853ab4e3594b80a53900a379cd8, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.90943396, g: 0.51992166, b: 0.58718, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -194,7 +194,7 @@ Transform:
   m_GameObject: {fileID: 1998210135809469578}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -1.84, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -215,7 +215,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startPoint: {fileID: 4218084789240107048}
   endPoint: {fileID: 2895303820063322848}
-  speed: 2
+  speed: 5
   waitTime: 2
   isWaiting: 1
   player: {fileID: 0}
@@ -245,7 +245,7 @@ Transform:
   m_GameObject: {fileID: 2555959081692140021}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.37, z: 0}
+  m_LocalPosition: {x: 0.14, y: -0.42, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -311,7 +311,7 @@ Transform:
   m_GameObject: {fileID: 4207113022560833803}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.68, z: 0}
+  m_LocalPosition: {x: 0, y: -3.19, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -391,7 +391,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -5726882, guid: a9b19853ab4e3594b80a53900a379cd8, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.90943396, g: 0.51992166, b: 0.58718, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -559,7 +559,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -1013867718, guid: a9b19853ab4e3594b80a53900a379cd8, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.90943396, g: 0.51992166, b: 0.58718, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -828,7 +828,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8798495828561289173, guid: 65c64fbf380243548b0b502b44470b72, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.04
+      value: -8.64
       objectReference: {fileID: 0}
     - target: {fileID: 8798495828561289173, guid: 65c64fbf380243548b0b502b44470b72, type: 3}
       propertyPath: m_LocalPosition.y
