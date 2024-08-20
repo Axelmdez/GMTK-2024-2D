@@ -12,12 +12,16 @@ public class Elevator : ObstacleBehaviour
     public Transform player;
     private bool movingToEnd;
     private bool isBoxLifted;
-    
-    
+
+    [SerializeField] float platformOffset = 1.5f;
+    private Vector3 savedStartPos, savedEndPos;
 
     private void Start()
     {
-        transform.position = startPoint.position;
+        savedStartPos = startPoint.position + Vector3.up * platformOffset;
+        savedEndPos = endPoint.position + Vector3.up * platformOffset;
+
+        transform.position = savedStartPos;
         movingToEnd = true;
     }
 
@@ -44,8 +48,8 @@ public class Elevator : ObstacleBehaviour
     {
         if (movingToEnd)
         {
-            transform.position = Vector3.MoveTowards(transform.position, endPoint.position, speed * Time.deltaTime);
-            if (Vector3.Distance(transform.position, endPoint.position) < 0.1f)
+            transform.position = Vector3.MoveTowards(transform.position, savedEndPos, speed * Time.deltaTime);
+            if (Vector3.Distance(transform.position, savedEndPos) < 0.1f)
             {
                 StartCoroutine(WaitAtPoint());
                 movingToEnd = false;
@@ -53,8 +57,8 @@ public class Elevator : ObstacleBehaviour
         }
         else
         {
-            transform.position = Vector3.MoveTowards(transform.position, startPoint.position, speed * Time.deltaTime);
-            if (Vector3.Distance(transform.position, startPoint.position) < 0.1f)
+            transform.position = Vector3.MoveTowards(transform.position, savedStartPos, speed * Time.deltaTime);
+            if (Vector3.Distance(transform.position, savedStartPos) < 0.1f)
             {
                 StartCoroutine(WaitAtPoint());
                 movingToEnd = true;
