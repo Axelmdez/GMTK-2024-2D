@@ -2,11 +2,14 @@ using System;
 using Unity.Burst.CompilerServices;
 using UnityEditorInternal;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerInteraction : MonoBehaviour
 {
     public Transform armsHoldingPoint;
     public Transform armsAimPoint;
+    [SerializeField] BoxCollider2D smallCollider;
+    [SerializeField] BoxCollider2D mediumCollider;
 
     public float holdDistance = 2.0f;
     public float throwForce = 10f;
@@ -24,6 +27,8 @@ public class PlayerInteraction : MonoBehaviour
     private PlayerAiming playerAiming;
     private PlayerMovement playerMovement;
 
+    public float playerMassSBox = 3f;
+    public float playerMassMBox = 5f;
 
     void Start()
     {
@@ -42,11 +47,12 @@ public class PlayerInteraction : MonoBehaviour
     private void HandleInteraction()
     { 
         if (Input.GetKeyDown(KeyCode.E))
-        {  
+        {
+            bool didYouEvenLift;
+
             if (heldItem == null)
             {
-                TryPickUpBox();
-
+                didYouEvenLift = TryPickUpBox();
             }
             else
             {
@@ -95,7 +101,7 @@ public class PlayerInteraction : MonoBehaviour
         return heldItem != null;
     } 
 
-    private void TryPickUpBox()
+    private bool TryPickUpBox()
     {
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Collider2D[] hitColliders = Physics2D.OverlapCircleAll(mousePosition, 0.1f, pickupsLayer);
@@ -109,20 +115,19 @@ public class PlayerInteraction : MonoBehaviour
                 if (distanceToBox <= pickupRange && (collider.CompareTag("Throwable") || collider.CompareTag("Liftable")))
                 {
                     PickUpBox(box);
-                    return;
+                    return true;
                 }
-                else {
-                    Debug.Log("Picking it up: Distance" + distanceToBox);
-                }
+                
             }  
         }
+        return false;
     }
 
     private void PickUpBox(Box box)
     {
         playerAudio.PlayPickupSound();
         heldItem = box;
-        Rigidbody2D heldRb = heldItem.GetComponent<Rigidbody2D>();
+        Rigidbody2D heldRb = heldItem.GetComponent<Rigidbody2D>(); 
         heldRb.velocity = Vector2.zero;
         heldRb.angularVelocity = 0f;
         heldRb.isKinematic = true;
@@ -130,15 +135,21 @@ public class PlayerInteraction : MonoBehaviour
         playerAiming.DisableAiming();
         
         holdDistance = heldItem.boxType == BoxType.small ? 0f : .5f;
+
         Rigidbody2D player = transform.GetComponent<Rigidbody2D>();
-        if (heldItem.boxType == BoxType.small) {
-            player.mass += playerMassSBox;
-        }else if (heldItem.boxType == BoxType.medium)
+
+        if (heldItem.boxType != BoxType.large)
         {
-            player.mass += playerMassMBox;
-        }
+            player.mass += playerMassSBox;
+        } 
+         
         armsHoldingPoint.gameObject.SetActive(true);
+        
+        if(box.boxType == BoxType.small) smallCollider.gameObject.SetActive(true); 
+        else mediumCollider.gameObject.SetActive(true);
+        
         heldItem.transform.position = armsHoldingPoint.position + Vector3.up * holdDistance;
+        heldItem.transform.rotation = Quaternion.identity;
         heldItem.transform.parent = transform;
         armsAimPoint.gameObject.SetActive(false);
 
@@ -146,23 +157,37 @@ public class PlayerInteraction : MonoBehaviour
 
     void ThrowBox()
     {
-        Rigidbody2D player = transform.GetComponent<Rigidbody2D>();
-        if (heldItem.boxType == BoxType.small)
+        Rigidbody2D player = GetComponent<Rigidbody2D>();
+         
+        if (heldItem.boxType != BoxType.large)
         {
             player.mass -= playerMassSBox;
         }
-        else if (heldItem.boxType == BoxType.medium)
-        {
-            player.mass -= playerMassMBox;
-        }
+
+        if (heldItem.boxType == BoxType.small) smallCollider.gameObject.SetActive(false);
+        else mediumCollider.gameObject.SetActive(false);
+         
         playerAudio.PlayThrowSound();
+         
         heldItem.transform.parent = null;
         Rigidbody2D heldRb = heldItem.GetComponent<Rigidbody2D>();
         heldRb.isKinematic = false;
+         
+        Vector2 cursorPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 playerPosition = transform.position;
+        Vector2 throwDirection = (cursorPosition - playerPosition).normalized;
+         
+        float distanceMultiplier = Vector2.Distance(playerPosition, cursorPosition);
 
-        var leftOrRight = playerMovement.GetIsLeft() ? -1 : 1;
+         
+        float minMultiplier = 0.5f;  
+        float maxMultiplier = 2.0f;  
+        distanceMultiplier = Mathf.Clamp(distanceMultiplier, minMultiplier, maxMultiplier);
 
-        heldRb.velocity = (new Vector2(transform.localScale.x * (((int)heldItem.boxType) < 1 ? throwForce * 1.5f : throwForce / 3) * leftOrRight, 1)) ;
+     
+        float adjustedThrowForce = throwForce * distanceMultiplier;
+        heldRb.velocity = throwDirection * adjustedThrowForce;
+ 
         heldItem = null;
         armsHoldingPoint.gameObject.SetActive(false);
         armsAimPoint.gameObject.SetActive(true);
@@ -171,4 +196,5 @@ public class PlayerInteraction : MonoBehaviour
         
 
     }
+     
 }

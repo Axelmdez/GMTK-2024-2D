@@ -6,21 +6,33 @@ public class PlayerShooting2 : MonoBehaviour
     public GameObject shrinkProjectilePrefab;
     public GameObject growProjectilePrefab;
     public float projectileSpeed = 10f;
+    private PlayerAudio playerAudio;
+    private PlayerInteraction playerInteraction;
+
+    private void Awake()
+    {
+        playerInteraction = GetComponent<PlayerInteraction>();
+        playerAudio = GetComponent<PlayerAudio>();
+    }
 
     void Update()
     {
+        if (playerInteraction.HoldingItem()) return;
+    
         HandleShooting();
     }
 
     void HandleShooting()
     {
-        if (Input.GetMouseButtonDown(0)) // Left-click for shrink
-        {
-            Shoot(shrinkProjectilePrefab);
-        }
-        else if (Input.GetMouseButtonDown(1)) // Right-click for growth
+        if (Input.GetMouseButtonDown(0)) //grow
         {
             Shoot(growProjectilePrefab);
+            playerAudio.PlayShootingGrowSound();
+        }
+        else if (Input.GetMouseButtonDown(1)) //shrink
+        {
+            Shoot(shrinkProjectilePrefab);
+            playerAudio.PlayShootingShrinkSound();
         }
     }
 

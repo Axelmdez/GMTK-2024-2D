@@ -9,6 +9,7 @@ public enum AudioGroups
     Music,
     Ambience,
     Environment,
+    Button,
     DoorOpen,
     DoorClose,
     BoxHitSurface,

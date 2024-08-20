@@ -10,8 +10,8 @@ public class MainMenu : MonoBehaviour
     /// so I'm manually setting this. Feel free to scrap this entire script later 
     /// </summary> 
 
-    public Button startButton;
-    public Button quitButton; 
+    public UnityEngine.UI.Button startButton;
+    public UnityEngine.UI.Button quitButton; 
 
     void Start()
     { 
