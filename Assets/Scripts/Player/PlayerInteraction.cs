@@ -27,9 +27,6 @@ public class PlayerInteraction : MonoBehaviour
     private PlayerAiming playerAiming;
     private PlayerMovement playerMovement;
 
-    public float playerMassSBox = 3f;
-    public float playerMassMBox = 5f;
-
     void Start()
     {
         playerMovement = GetComponent<PlayerMovement>();
