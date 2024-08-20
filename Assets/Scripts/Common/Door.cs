@@ -8,11 +8,11 @@ public class Door : ObstacleBehaviour
     public Animator doorAnimator;  
     public float openDelay = 0.5f; 
 
-    private bool isOpen = false; 
+    private bool IsOpen = false; 
 
     public override void DisableObstacle()
     {
-        if (!isOpen)
+        if (!IsOpen)
         {
             StartCoroutine(OpenDoorWithDelay());
         }
@@ -20,14 +20,14 @@ public class Door : ObstacleBehaviour
 
     public override void EnableObstacle()
     {
-        if (isOpen)
+        if (IsOpen)
         {
-            isOpen = false;
+            IsOpen = false;
             doorCollider.enabled = true;
 
             if (doorAnimator != null)
             {
-                doorAnimator.SetBool(nameof(isOpen), false);
+                doorAnimator.SetBool(nameof(IsOpen), false);
             }
         }
     }
@@ -41,7 +41,7 @@ public class Door : ObstacleBehaviour
 
         if (doorAnimator != null)
         {
-            doorAnimator.SetBool(nameof(isOpen), false);
+            doorAnimator.SetBool(nameof(IsOpen), false);
         }
     }
 
@@ -50,12 +50,12 @@ public class Door : ObstacleBehaviour
     {
         if (doorAnimator != null)
         {
-            doorAnimator.SetBool(nameof(isOpen), true);
+            doorAnimator.SetBool(nameof(IsOpen), true);
         }
 
         yield return new WaitForSeconds(openDelay);
 
-        isOpen = true;
+        IsOpen = true;
         doorCollider.enabled = false;
     }
 }
