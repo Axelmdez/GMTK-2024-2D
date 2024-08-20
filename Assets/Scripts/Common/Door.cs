@@ -12,7 +12,7 @@ public class Door : ObstacleBehaviour
 
     public override void DisableObstacle()
     {
-        if (!IsOpen)
+        if (IsOpen)
         {
             StartCoroutine(OpenDoorWithDelay());
         }
@@ -41,7 +41,7 @@ public class Door : ObstacleBehaviour
 
         if (doorAnimator != null)
         {
-            doorAnimator.SetBool(nameof(IsOpen), false);
+            doorAnimator.Play("door-idle");
         }
     }
 
