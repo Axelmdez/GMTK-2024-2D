@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ExitButtons : MonoBehaviour
+public class Button : MonoBehaviour
 {
-    public ExitDoor door;
+    public Door door;
     float buttonSizeY;
     Vector3 buttonUpPos;
     Vector3 buttonDownPos;
@@ -72,9 +72,9 @@ public class ExitButtons : MonoBehaviour
         {
             isPressed = !isPressed;
             AudioManager.instance.PlaySFX(pressedClip, AudioGroups.Button);
-            if (!door.isDoorOpen)
+            if (door.isTriggered)
             {
-                door.isDoorOpen = !door.isDoorOpen;
+                door.isTriggered = false;
             }
         }
     }
@@ -82,7 +82,7 @@ public class ExitButtons : MonoBehaviour
     IEnumerator ButtonUpDelay(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
-        door.isDoorOpen = !door.isDoorOpen;
+        door.isTriggered = true;
         isPressed = false;
     }
 
