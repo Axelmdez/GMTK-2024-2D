@@ -137,10 +137,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitSurfaceClips:
-  - {fileID: 8300000, guid: 7d82dcbce0faff94aad57db40e3f7f60, type: 3}
-  - {fileID: 8300000, guid: a2cc7d13a70ec214ba89472562e7a5ec, type: 3}
-  - {fileID: 8300000, guid: 40e02d6aba3d81c499cf8c4f88545417, type: 3}
-  - {fileID: 8300000, guid: a9e010c41d35273458208ff53907ba23, type: 3}
+  - {fileID: 8300000, guid: 8ad402b46d4352746b995dd8e53c5ca6, type: 3}
+  - {fileID: 8300000, guid: 31b19d175684c91448eb878f9dbde4e3, type: 3}
+  - {fileID: 8300000, guid: fb2e53cec59e3784990df6e31ac63f10, type: 3}
+  - {fileID: 8300000, guid: 8e3c33d403c828d4fb9dd711fb689983, type: 3}
   scalingUp: {fileID: 8300000, guid: 63d3523a95e5b534baf2ca7bd0ccfe34, type: 3}
   scalingDown: {fileID: 8300000, guid: 17a6cb17e1912cd43a5175507e31f65e, type: 3}
 --- !u!1 &467543784973511764
