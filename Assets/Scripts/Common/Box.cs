@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Rendering;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Box : MonoBehaviour
 {
@@ -11,6 +13,8 @@ public class Box : MonoBehaviour
 
     private BoxAudio boxAudio;
     private Rigidbody2D rb;
+
+    private BoxSpawner spawner;
 
     private void Start()
     {
@@ -62,7 +66,7 @@ public class Box : MonoBehaviour
                     break;
                 case BoxType.small:
                     Debug.Log("Box is already small, cannot shrink further.");
-                    return;
+                    break;
             }
         }
         else
@@ -86,6 +90,13 @@ public class Box : MonoBehaviour
 
         if (newChild != null)
         {
+            if (spawner != null)
+            {
+                Box newBox = newChild.GetComponent<Box>();
+                newBox.SetSpawner(spawner);
+
+            }
+
             Destroy(hitTransform.gameObject);
             newChild.transform.position = boxPosition;
         }
@@ -94,6 +105,12 @@ public class Box : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         boxAudio.PlayHitSound();
+    }
+
+    public void SetSpawner(BoxSpawner boxSpawner)
+    {
+        spawner= boxSpawner;
+        spawner.SetAnotherBox(gameObject);
     }
 }
 
