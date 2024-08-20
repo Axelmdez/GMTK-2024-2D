@@ -4,22 +4,20 @@ using UnityEngine;
 
 public abstract class ObstacleBehaviour : MonoBehaviour
 {
-    public bool isTriggered = false;
+    internal bool isTriggered;
 
-    // Start is called before the first frame update
-
-    // Update is called once per frame
-    protected virtual void Update()
+    public virtual void SetTrigger(bool triggerValue)
     {
-        if (isTriggered)
-        {
+        if (triggerValue)
+        { 
             EnableObstacle();
         }
-        else if (!isTriggered) {
+        else 
+        {
             DisableObstacle();
         }
+        isTriggered = triggerValue;
     }
-
     public abstract void EnableObstacle();
 
     public abstract void DisableObstacle();

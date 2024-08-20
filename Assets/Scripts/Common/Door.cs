@@ -19,17 +19,14 @@ public class Door : ObstacleBehaviour
     }
 
     public override void EnableObstacle()
-    {
-        if (IsOpen)
-        {
-            IsOpen = false;
-            doorCollider.enabled = true;
+    { 
+        IsOpen = false;
+        doorCollider.enabled = true;
 
-            if (doorAnimator != null)
-            {
-                doorAnimator.SetBool(nameof(IsOpen), false);
-            }
-        }
+        if (doorAnimator != null)
+        {
+            doorAnimator.SetBool(nameof(IsOpen), false);
+        } 
     }
      
     void Start()
@@ -38,11 +35,7 @@ public class Door : ObstacleBehaviour
         {
             doorCollider = GetComponent<Collider2D>();
         }
-
-        if (doorAnimator != null)
-        {
-            doorAnimator.SetBool(nameof(IsOpen), false);
-        }
+         
     }
 
     //wait for the animation to open
