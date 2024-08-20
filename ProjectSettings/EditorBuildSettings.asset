@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/BoxLevel1.unity
     guid: 1b81cf19677bace4c85e607b9af219ab
   - enabled: 1
-    path: Assets/Scenes/MainScenes/BaseLevel_BACKUP.unity
-    guid: f25a90f2f863bb24b923b514e1cd6d87
+    path: Assets/Scenes/Levels/Level1.unity
+    guid: a329fdd5affbfb54681810c9ddce0400
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level2.unity
+    guid: 4d3e57a2ce1c9d74ea7f59b2f67e436e
   m_configObjects: {}

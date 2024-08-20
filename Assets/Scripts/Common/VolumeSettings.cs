@@ -8,8 +8,8 @@ public class VolumeSettings : MonoBehaviour
 {
     public AudioMixer mainMixer;
     public Slider mainSlider;
-    //public AudioMixer musicMixer;
-    //public Slider musicSlider;
+    public AudioMixer musicMixer;
+    public Slider musicSlider;
 
 
     public void Start()
@@ -21,7 +21,7 @@ public class VolumeSettings : MonoBehaviour
         else { 
             SetMainMusic();
         }
-        /*
+        
         if (PlayerPrefs.HasKey("MusicVolume"))
         {
             LoadMusic();
@@ -30,22 +30,22 @@ public class VolumeSettings : MonoBehaviour
         {
             SetMusic();
         }
-        */
+        
     }
-    /*
-    private void LoadMusic()
+
+    public void LoadMusic()
     {
         musicSlider.value = PlayerPrefs.GetFloat("MusicVolume");
         SetMusic();
     }
 
-    private void SetMusic()
+    public void SetMusic()
     {
         float volume = musicSlider.value;
         musicMixer.SetFloat("Music", Mathf.Log10(volume) * 20);
         PlayerPrefs.SetFloat("MusicVolume", volume);
     }
-    */
+    
     private void LoadMainMusic()
     {
         mainSlider.value = PlayerPrefs.GetFloat("MainVolume");
