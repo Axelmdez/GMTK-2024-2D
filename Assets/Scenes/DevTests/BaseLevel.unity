@@ -2712,10 +2712,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1014295094}
     m_Modifications:
-    - target: {fileID: 4956460822412463358, guid: be26f8304758c2f40908ccbada0206a0, type: 3}
-      propertyPath: parallaxEffectMultiplier
-      value: 0.1
-      objectReference: {fileID: 0}
     - target: {fileID: 5888344317703735487, guid: be26f8304758c2f40908ccbada0206a0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 9

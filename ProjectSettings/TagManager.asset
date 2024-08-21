@@ -9,6 +9,7 @@ TagManager:
   - Throwable
   - WindZone
   - Elevator
+  - Button
   layers:
   - Default
   - TransparentFX
